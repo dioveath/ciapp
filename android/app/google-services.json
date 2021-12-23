@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "763610267311",
+    "project_id": "ciapp-34d14",
+    "storage_bucket": "ciapp-34d14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763610267311:android:82df83137d9de5ff935e5a",
+        "android_client_info": {
+          "package_name": "com.charicha.ciapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "763610267311-5f9ucf030ma73og4r2qvarp4juekmkmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPzTWWQheLKT-IQbi-viS7Qk0El-UmbPc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "763610267311-5f9ucf030ma73og4r2qvarp4juekmkmo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
