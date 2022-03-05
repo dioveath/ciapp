@@ -26,8 +26,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
-  final TextEditingController confirmPasswordController =
-      new TextEditingController();
+  final TextEditingController confirmPasswordController = new TextEditingController();
   final TextEditingController phoneController = new TextEditingController();
   final TextEditingController addressController = new TextEditingController();
 
@@ -40,59 +39,47 @@ class _RegisterFormState extends State<RegisterForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8), 
-      decoration: BoxDecoration(
-        border: BorderDirectional(
-            top: BorderSide(color: kPrimaryColor, width: 1),
-            bottom: BorderSide(color: kPrimaryColor, width: 1)),
-      ),
-      // padding: EdgeInsets.only(top: 14, bottom: 12),
+      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: Form(
         key: _registerFormKey,
-        child: Stack(children: [
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                buildFirstNameField(),
-                SizedBox(height: 10),
-                buildLastNameField(),
-                SizedBox(height: 10),
-                buildEmailField(),
-                SizedBox(height: 10),
-                buildPhoneNumberField(),
-                SizedBox(height: 10),
-                buildAddressField(),
-                SizedBox(height: 10),
-                buildPasswordField(),
-                SizedBox(height: 10),
-                buildConfirmPasswordField(),
-
-                SizedBox(height: 10),
-                Container(
-                  child: Column(
-                    children: List.generate(errors.length,
-                        (index) => FormErrorText(text: errors[index])),
-                  ),
-                ),
-                SizedBox(height: 10),
-                loading
-                    ? Container(
-                        alignment: Alignment.bottomCenter,
-                        child: CircularProgressIndicator(
-                          backgroundColor: Colors.transparent))
-                        : buildFakeRegisterButton(context),
-              ],
+        child: Column(
+          children: [
+            Image.asset("assets/images/ci_logo_alpha.png",
+                height: getPHeight(300)),
+            Container(
+                width: getPWidth(1080),
+                child: Text("Fill your registration form !",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1
+                        .copyWith(color: kPrimaryColor))),
+            SizedBox(height: 5),
+            buildFirstNameField(),
+            SizedBox(height: 10),
+            buildLastNameField(),
+            SizedBox(height: 10),
+            buildEmailField(),
+            SizedBox(height: 10),
+            buildPhoneNumberField(),
+            SizedBox(height: 10),
+            buildAddressField(),
+            SizedBox(height: 10),
+            buildPasswordField(),
+            SizedBox(height: 10),
+            buildConfirmPasswordField(),
+            SizedBox(height: 10),
+            Container(
+              child: Column(
+                children: List.generate(errors.length,
+                    (index) => FormErrorText(text: errors[index])),
+              ),
             ),
-          ),
-          Positioned(
-            right: 0,
-            left: 0,
-            bottom: 0, 
-            child: loading
+            SizedBox(height: 10),
+            loading
                 ? Container(
                     child: CircularProgressIndicator(
                         backgroundColor: kPrimaryColor))
-                    : Container(
+                : Container(
                     decoration: BoxDecoration(
                       color: kPrimaryColor,
                       borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -100,23 +87,16 @@ class _RegisterFormState extends State<RegisterForm> {
                     child: MaterialButton(
                       padding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-                      minWidth: SizeConfig.screenWidth, 
+                      minWidth: SizeConfig.screenWidth,
                       onPressed: () async {
                         FocusScopeNode currentFocus = FocusScope.of(context);
                         if (!currentFocus.hasPrimaryFocus)
                           currentFocus.unfocus();
-
                         if (_registerFormKey.currentState.validate()) {
                           setState(() {
                             loading = true;
                           });
                           _registerFormKey.currentState.save();
-
-                          // debugPrint(firstNameController.text);
-                          // debugPrint(lastNameController.text);
-                          // debugPrint(emailController.text);
-                          // debugPrint(passwordController.text);
-                          // debugPrint(confirmPasswordController.text);
 
                           String result =
                               await Provider.of<AuthenticationService>(context,
@@ -160,35 +140,47 @@ class _RegisterFormState extends State<RegisterForm> {
                       ),
                     ),
                   ),
-          ),
-        ]),
+            SizedBox(height: 10),
+            InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Row(children: [
+                Icon(Icons.arrow_back, size: 24, color: kPrimaryColor),
+                SizedBox(width: 10),
+                Text("Back to Login",
+                    style: TextStyle(
+                        color: kPrimaryColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal)),
+              ]),
+            ),
+            SizedBox(height: 10),
+          ],
+        ),
       ),
     );
   }
 
   Container buildFakeRegisterButton(BuildContext context) {
     return Container(
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                      child: MaterialButton(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 14),
-                        onPressed: () {},
-                        child: Text(
-                          "REGISTER",
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline5
-                              .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.transparent,
-                                  fontSize: 24),
-                        ),
-                      ),
-                    );
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
+      child: MaterialButton(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+        onPressed: () {},
+        child: Text(
+          "REGISTER",
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.headline5.copyWith(
+              fontWeight: FontWeight.bold,
+              color: Colors.transparent,
+              fontSize: 24),
+        ),
+      ),
+    );
   }
 
   TextFormField buildPasswordField() {

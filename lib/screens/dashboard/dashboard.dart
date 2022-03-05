@@ -1,6 +1,5 @@
 import 'package:ciapp/constants.dart';
 import 'package:ciapp/size_config.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'components/body.dart';

@@ -19,6 +19,7 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
     if (user != null) {
       return DashboardScreen();
     }
+
     return LoginScreen();
   }
 }

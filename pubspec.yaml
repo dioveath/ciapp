@@ -24,6 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_math_fork: ^0.5.0
+
   # Add the dependency for the Firebase Core Flutter SDK
   firebase_core: ^1.2.1
 
@@ -37,7 +39,7 @@ dependencies:
   firebase_storage: ^8.1.1
   firebase_messaging: ^10.0.2
 
-  provider: ^5.0.0
+  provider: ^6.0.0
   after_layout: ^1.1.0
   shared_preferences: ^2.0.5
 
@@ -57,11 +59,12 @@ dependencies:
   flutter_launcher_icons: ^0.9.0
   font_awesome_flutter: ^9.0.0
 
-  device_preview: ^0.7.3
+  device_preview: ^1.0.0
 
   # custom packages
   ci_ui:
-    path: ../ci_ui
+    git:
+      url: https://github.com/dioveath/ci_ui.git
 
 flutter_icons:
   android: "assets/images/ci_logo_squared.png"

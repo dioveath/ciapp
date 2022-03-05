@@ -16,9 +16,8 @@ Future<void> main() async {
   final adService = AdService(initFuture);
 
   await Firebase.initializeApp();
-  runApp(Provider.value(
-      value: adService,
-      child: DevicePreview(enabled: true, builder: (context) => MyApp())));
+  runApp(Provider.value(value: adService, child: MyApp()));
+  // child: DevicePreview(enabled: true, builder: (context) => MyApp())));
 }
 
 class MyApp extends StatelessWidget {
@@ -37,7 +36,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         locale: DevicePreview.locale(context),
-        builder: DevicePreview.appBuilder, 
+        builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
         title: 'Charicha Institute',
         theme: theme(),

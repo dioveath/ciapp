@@ -28,7 +28,14 @@ class _BodyState extends State<Body> {
                 SizeConfig.screenHeight - MediaQuery.of(context).padding.top,
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white, 
+                gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [
+                    kSecondaryColor,
+                    kTitleColor,
+                  ],
+                ),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(18),
@@ -39,19 +46,20 @@ class _BodyState extends State<Body> {
                       child: Column(
                         children: [
                           Spacer(),
-                          Image.asset("assets/images/ci_logo_black.png",
-                              height: getPHeight(300)),
-                            Container(
+                          Image.asset("assets/images/ci_logo_alpha.png",
+                              height: getPHeight(400)),
+                          Container(
                               alignment: Alignment.centerLeft,
                               child: Text(
                                   "Let's us make learning more possible, \nmore digital, more engaging.",
                                   style: bodyStyle.copyWith(
-                                      color: kcPrimaryColor))), 
+                                      color: kcPrimaryColor))),
                           Spacer(),
                           Container(
-                            alignment: Alignment.centerLeft,
-                            child: Text("Login with your credentials!",
-                              style: captionStyle.copyWith(color: kcPrimaryColor))),
+                              alignment: Alignment.centerLeft,
+                              child: Text("Login with your credentials!",
+                                  style: captionStyle.copyWith(
+                                      color: kcPrimaryColor))),
                           SizedBox(height: 5),
                         ],
                       ),
@@ -59,32 +67,32 @@ class _BodyState extends State<Body> {
                     LoginForm(),
                     Expanded(
                       flex: 1,
-                        child: Column(
-                          children: [
-                            SizedBox(height: 5),
-                            TextLink(
-                                text: "Forget your credentials?",
-                                onTapFunction: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                          content:
-                                              Text("Not available right now!")));
-                                }),
-                            SizedBox(height: 10),
-                            Spacer(),
-                            TextLink(
-                              text: "www.charichainstitute.com.np",
-                              onTapFunction: () async {
-                                const _url = "http://charichainstitute.com.np";
-                                await canLaunch(_url)
-                                    ? await launch(_url)
-                                    : throw "Couldn't lauch $_url";
-                              },
-                              alignment: Alignment.center,
-                            ),
-                            Spacer(),
-                          ],
-                        ),
+                      child: Column(
+                        children: [
+                          SizedBox(height: 5),
+                          TextLink(
+                              text: "Forget your credentials?",
+                              onTapFunction: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content:
+                                            Text("Not available right now!")));
+                              }),
+                          SizedBox(height: 10),
+                          Spacer(),
+                          TextLink(
+                            text: "www.charichainstitute.com.np",
+                            onTapFunction: () async {
+                              const _url = "http://charichainstitute.com.np";
+                              await canLaunch(_url)
+                                  ? await launch(_url)
+                                  : throw "Couldn't lauch $_url";
+                            },
+                            alignment: Alignment.center,
+                          ),
+                          Spacer(),
+                        ],
+                      ),
                     )
                   ],
                 ),
