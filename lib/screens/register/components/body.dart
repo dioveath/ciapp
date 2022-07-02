@@ -1,5 +1,4 @@
 import 'package:ciapp/constants.dart';
-import 'package:ciapp/size_config.dart';
 import 'package:flutter/material.dart';
 import 'register_form.dart';
 

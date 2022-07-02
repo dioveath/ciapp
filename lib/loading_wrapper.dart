@@ -1,12 +1,10 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:ciapp/authentication_wrapper.dart';
-import 'package:ciapp/screens/dashboard/components/courses/courses_screen.dart';
 import 'package:ciapp/screens/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'constants.dart';
-import 'screens/dashboard/components/news_feed/feedview_screen.dart';
 
 class LoadingWrapper extends StatefulWidget {
   @override

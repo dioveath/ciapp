@@ -1,4 +1,3 @@
-import 'package:ciapp/authentication_wrapper.dart';
 import 'package:ciapp/constants.dart';
 import 'package:ciapp/service/authentication_service.dart';
 import 'package:ciapp/service/database_service.dart';

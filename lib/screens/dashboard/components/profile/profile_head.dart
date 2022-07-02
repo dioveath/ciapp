@@ -15,14 +15,14 @@ class ProfileHead extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var ci_user = context.watch<CIUser>();
+    var ciUser = context.watch<CIUser>();
 
-    if (ci_user == null) ci_user = CIUser.DefaultUser;
+    if (ciUser == null) ciUser = CIUser.DefaultUser;
 
-    var roles = ci_user.roles.keys.toList().reversed.toList();
+    var roles = ciUser.roles.keys.toList().reversed.toList();
 
-    Color levelColor = CIUser.levelColor[ci_user.level - 1];
-    int userLevel = ci_user.level;
+    Color levelColor = CIUser.levelColor[ciUser.level - 1];
+    int userLevel = ciUser.level;
 
     return Container(
       alignment: Alignment.center,
@@ -47,7 +47,7 @@ class ProfileHead extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(3000)),
                   child: Image(
                     fit: BoxFit.cover,
-                    image: NetworkImage(ci_user.profile_URL),
+                    image: NetworkImage(ciUser.profile_URL),
                     width: SizeConfig.screenWidth * 0.38,
                     height: SizeConfig.screenWidth * 0.38,
                   ),
@@ -61,11 +61,11 @@ class ProfileHead extends StatelessWidget {
                         await showDialog(
                                 context: context,
                                 builder: (_) =>
-                                    ImageSelectorDialog(uid: ci_user.doc_id))
+                                    ImageSelectorDialog(uid: ciUser.doc_id))
                             .then((value) {
                           if (value == null) return;
                           DatabaseService()
-                              .updateCIUser(ci_user..profile_URL = value);
+                              .updateCIUser(ciUser..profile_URL = value);
                         });
                       },
                       child: Container(
@@ -84,14 +84,14 @@ class ProfileHead extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "Since ${DateFormat('dd MMM yyyy').format(ci_user.joinedAt)}",
+                    "Since ${DateFormat('dd MMM yyyy').format(ciUser.joinedAt)}",
                     style: Theme.of(context).textTheme.caption.copyWith(
                           color: levelColor,
                           fontSize: 11.0,
                         ),
                   ),
                   Text(
-                    "${ci_user.first_name.toUpperCase()} ${ci_user.last_name.toUpperCase()}",
+                    "${ciUser.first_name.toUpperCase()} ${ciUser.last_name.toUpperCase()}",
                     style: Theme.of(context).textTheme.bodyText2.copyWith(
                           color: levelColor,
                           fontSize: 18.0,
@@ -100,7 +100,7 @@ class ProfileHead extends StatelessWidget {
                         ),
                   ),
                   Text(
-                    "${ci_user.rank} of Charicha Institute",
+                    "${ciUser.rank} of Charicha Institute",
                     style: Theme.of(context).textTheme.bodyText1.copyWith(
                           color: levelColor,
                           fontSize: 14.0,
@@ -119,14 +119,14 @@ class ProfileHead extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                        "${CIUser.levelNames[userLevel - 1]} - ${userLevel}",
+                        "${CIUser.levelNames[userLevel - 1]} - $userLevel",
                         style: Theme.of(context).textTheme.bodyText2.copyWith(
                               color: levelColor,
                               fontSize: 14,
                             )),
                     // SizedBox(width: 30),
                     Spacer(),
-                    Text("${ci_user.exp_points} XP",
+                    Text("${ciUser.exp_points} XP",
                         style: Theme.of(context).textTheme.bodyText1.copyWith(
                               color: levelColor,
                               fontSize: 14,
@@ -146,14 +146,14 @@ class ProfileHead extends StatelessWidget {
                     Positioned(
                       left: 0,
                       child: Container(
-                        width: 200 * ci_user.getCurrentLevelCompletionPercent(),
+                        width: 200 * ciUser.getCurrentLevelCompletionPercent(),
                           height: 5,
                           color: levelColor),
                     ),
                   ],
                 ),
                 Text(
-                    "To ${CIUser.levelNames[userLevel]} - ${CIUser.levelPoints[userLevel - 1] - ci_user.exp_points} XP",
+                    "To ${CIUser.levelNames[userLevel]} - ${CIUser.levelPoints[userLevel - 1] - ciUser.exp_points} XP",
                     style: Theme.of(context)
                         .textTheme
                         .bodyText1
@@ -164,7 +164,7 @@ class ProfileHead extends StatelessWidget {
                   children: [
                     Icon(Icons.favorite, color: Colors.redAccent, size: 18),
                     SizedBox(width: 4),
-                    Text("${ci_user.hearts} Hearts",
+                    Text("${ciUser.hearts} Hearts",
                         style: Theme.of(context)
                             .textTheme
                             .caption

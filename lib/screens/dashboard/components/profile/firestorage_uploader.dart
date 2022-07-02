@@ -72,7 +72,7 @@ class _FireStorageUploaderState extends State<FireStorageUploader> {
                               context,
                               await _storage
                                   .ref()
-                                  .child("${filePath}")
+                                  .child("$filePath")
                                   .getDownloadURL())),
                     ],
                   )

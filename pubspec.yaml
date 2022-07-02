@@ -65,6 +65,7 @@ dependencies:
   ci_ui:
     git:
       url: https://github.com/dioveath/ci_ui.git
+  flutter_screenutil: ^5.5.3+2
 
 flutter_icons:
   android: "assets/images/ci_logo_squared.png"

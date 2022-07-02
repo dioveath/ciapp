@@ -10,7 +10,7 @@ import 'taskview_screen.dart';
 class TaskWidget extends StatefulWidget {
   final Task task;
 
-  TaskWidget({Key key, this.task = null}) : super(key: key);
+  TaskWidget({Key key, this.task}) : super(key: key);
 
   @override
   _TaskWidgetState createState() => _TaskWidgetState();

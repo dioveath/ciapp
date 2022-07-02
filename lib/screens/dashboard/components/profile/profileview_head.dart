@@ -1,11 +1,8 @@
 import 'package:ciapp/constants.dart';
 import 'package:ciapp/models/ci_user.dart';
-import 'package:ciapp/service/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
-import 'imageselector_dialog.dart';
 
 class ProfileViewHead extends StatelessWidget {
   CIUser ciUser;
@@ -89,7 +86,7 @@ class ProfileViewHead extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                        "${CIUser.levelNames[userLevel - 1]} - ${userLevel}",
+                        "${CIUser.levelNames[userLevel - 1]} - $userLevel",
                         style: Theme.of(context).textTheme.bodyText2.copyWith(
                               color: levelColor,
                               fontSize: 14,

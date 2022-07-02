@@ -3,7 +3,6 @@ import 'package:ciapp/screens/register/register_screen.dart';
 import 'package:ciapp/service/authentication_service.dart';
 import 'package:ciapp/constants.dart';
 import 'package:ciapp/shared/input_decoration.dart';
-import 'package:ciapp/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

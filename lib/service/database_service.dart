@@ -15,7 +15,7 @@ class DatabaseService {
     return _dbService;
   }
 
-  DatabaseService._internal() {}
+  DatabaseService._internal();
 
   Stream<CIUser> streamCIUser(String uid) {
     return _db
@@ -68,10 +68,10 @@ class DatabaseService {
     }
   }
 
-  Future<void> updateCIUser(CIUser ci_user) {
+  Future<void> updateCIUser(CIUser ciUser) {
     try {
-      var ref = _db.collection('ci_users').doc(ci_user.doc_id);
-      ref.update(ci_user.toUpdatableFieldOnlyMap());
+      var ref = _db.collection('ci_users').doc(ciUser.doc_id);
+      ref.update(ciUser.toUpdatableFieldOnlyMap());
     } on Exception catch (e) {
       debugPrint("CIAPP ERROR: " + e.toString());
     }
@@ -204,11 +204,11 @@ class DatabaseService {
     }
   }
 
-  Stream<FeedArticle> streamArticle(String doc_id) {
+  Stream<FeedArticle> streamArticle(String docId) {
     try {
       return _db
           .collection("articles")
-          .doc(doc_id)
+          .doc(docId)
           .snapshots()
           .map((snap) => FeedArticle.fromFirestore(snap));
     } on Exception catch (e) {

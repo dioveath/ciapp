@@ -1,5 +1,4 @@
 import 'package:ciapp/constants.dart';
-import 'package:ciapp/models/feed_article.dart';
 import 'package:ciapp/screens/dashboard/components/news_feed/feedview_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

@@ -7,10 +7,10 @@ import 'package:provider/provider.dart';
 
 class FinanceChart extends StatelessWidget {
   Widget build(BuildContext context) {
-    var mon_sum = context.watch<MonthlySummary>();
+    var monSum = context.watch<MonthlySummary>();
     int today = DateTime.now().day;
 
-    if (mon_sum == null)
+    if (monSum == null)
       return Container(
         alignment: Alignment.center,
         child: CircularProgressIndicator(
@@ -18,13 +18,13 @@ class FinanceChart extends StatelessWidget {
         ),
       );
 
-    return LineChart(buildLineChartData(mon_sum, today),
+    return LineChart(buildLineChartData(monSum, today),
         swapAnimationDuration: Duration(milliseconds: 1000),
         swapAnimationCurve: Curves.ease);
   }
 
-  LineChartData buildLineChartData(MonthlySummary mon_sum, today) {
-    Map<int, int> incomeMap = mon_sum.dayIncomeMap;
+  LineChartData buildLineChartData(MonthlySummary monSum, today) {
+    Map<int, int> incomeMap = monSum.dayIncomeMap;
     var hAmount = 0;
 
     for (int i = 0; i < incomeMap.length; i++) {

@@ -1,5 +1,4 @@
 import 'package:ciapp/constants.dart';
-import 'package:ciapp/models/ci_user.dart';
 import 'package:ciapp/shared/screenapp_bar.dart';
 import 'package:ciapp/size_config.dart';
 import 'package:flutter/material.dart';

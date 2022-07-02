@@ -35,14 +35,7 @@ class _NewsFeedBodyState extends State<NewsFeedBody> {
     adService.initialization.then((status) {
       setState(() {
         bannerAds.add(new BannerAd(
-            adUnitId: adService.testBannerAdUnitId,
-            size: AdSize.fullBanner,
-            request: AdRequest(),
-            listener: adService.banAdListener)
-          ..load());
-
-        bannerAds.add(new BannerAd(
-            adUnitId: adService.testBannerAdUnitId,
+            adUnitId: adService.bannerAdUnitId,
             size: AdSize.fullBanner,
             request: AdRequest(),
             listener: adService.banAdListener)
@@ -71,13 +64,6 @@ class _NewsFeedBodyState extends State<NewsFeedBody> {
                 }),
             BodyTextWidget(htmlBody: widget.feedArticle.body),
             LikeCountWidget(feedArticle: widget.feedArticle),
-
-            if (bannerAds[0] != null)
-              Container(
-                  alignment: Alignment.center,
-                  width: bannerAds[0].size.width.toDouble(),
-                  height: bannerAds[0].size.height.toDouble(),
-                  child: AdWidget(ad: bannerAds[0])), 
 
             FutureBuilder<CIUser>(
                 future: futureWritter,

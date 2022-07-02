@@ -15,18 +15,18 @@ class ProfileBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var ci_user = Provider.of<CIUser>(context);
+    var ciUser = Provider.of<CIUser>(context);
 
-    if (ci_user == null)
+    if (ciUser == null)
       return Container(
           alignment: Alignment.center, child: CircularProgressIndicator());
 
-    var stream_user = DatabaseService().streamCIUser(ci_user.doc_id);
+    var streamUser = DatabaseService().streamCIUser(ciUser.doc_id);
 
-    Color levelColor = CIUser.levelColor[ci_user.level - 1];
+    Color levelColor = CIUser.levelColor[ciUser.level - 1];
     double expBarWidth = SizeConfig.screenWidth * 0.3;
 
-    int userLevel = ci_user.level;
+    int userLevel = ciUser.level;
 
     return Container(
       color: kPrimaryColor,
@@ -49,10 +49,10 @@ class ProfileBar extends StatelessWidget {
                               color: levelColor, size: 18),
                           SizedBox(width: 4),
                           Text(
-                              "${CIUser.levelNames[userLevel - 1]} - ${userLevel}",
+                              "${CIUser.levelNames[userLevel - 1]} - $userLevel",
                               style: Theme.of(context).textTheme.bodyText2),
                           SizedBox(width: getPWidth(30)),
-                          Text("${ci_user.exp_points} XP",
+                          Text("${ciUser.exp_points} XP",
                               style: Theme.of(context).textTheme.bodyText1),
                         ]),
                   ),
@@ -70,14 +70,14 @@ class ProfileBar extends StatelessWidget {
                       Positioned(
                         left: 0,
                         child: Container(
-                          width: expBarWidth * ci_user.getCurrentLevelCompletionPercent(),
+                          width: expBarWidth * ciUser.getCurrentLevelCompletionPercent(),
                             height: 5,
                             color: levelColor),
                       ),
                     ],
                   ),
                   Text(
-                      "To ${CIUser.levelNames[userLevel]} - ${CIUser.levelPoints[userLevel - 1] - ci_user.exp_points} XP",
+                      "To ${CIUser.levelNames[userLevel]} - ${CIUser.levelPoints[userLevel - 1] - ciUser.exp_points} XP",
                       style: Theme.of(context).textTheme.bodyText1)
                 ],
               ),
@@ -89,11 +89,11 @@ class ProfileBar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    ci_user.first_name +
+                    ciUser.first_name +
                         " " +
-                        ci_user.last_name +
+                        ciUser.last_name +
                         "\n" +
-                        ci_user.rank,
+                        ciUser.rank,
                     style: Theme.of(context).textTheme.bodyText2,
                     textDirection: TextDirection.rtl,
                   ),
@@ -105,7 +105,7 @@ class ProfileBar extends StatelessWidget {
                     child: Row(
                       children: [
                         Icon(Icons.favorite, size: 16, color: Colors.redAccent),
-                        Text("${ci_user.hearts} Hearts",
+                        Text("${ciUser.hearts} Hearts",
                             style: TextStyle(
                                 color: kBackgroundColor,
                                 fontWeight: FontWeight.normal,
@@ -123,7 +123,7 @@ class ProfileBar extends StatelessWidget {
                       children: [
                         Icon(Icons.follow_the_signs,
                             size: 16, color: Colors.black26),
-                        Text("${ci_user.profileVisits} Profile Visits",
+                        Text("${ciUser.profileVisits} Profile Visits",
                             style: TextStyle(
                                 color: kBackgroundColor,
                                 fontWeight: FontWeight.normal,
@@ -137,7 +137,7 @@ class ProfileBar extends StatelessWidget {
               Container(
                 child: ProfileCard(
                     borderColor: levelColor,
-                    url: ci_user.profile_URL,
+                    url: ciUser.profile_URL,
                     width: userLevel + 1.0,
                     onTap: () {
                       Navigator.push(
@@ -145,8 +145,8 @@ class ProfileBar extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) =>
                                   StreamProvider<CIUser>.value(
-                                    initialData: ci_user,
-                                    value: stream_user,
+                                    initialData: ciUser,
+                                    value: streamUser,
                                     child: ProfileScreen(),
                                   )));
                     }),

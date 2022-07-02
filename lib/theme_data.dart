@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'constants.dart';
+
 
 ThemeData theme() {
   return ThemeData(
@@ -13,6 +15,7 @@ ThemeData theme() {
       bodyText1: TextStyle(color: Colors.white, fontSize: 13.0),
       bodyText2: TextStyle(color: Colors.white, fontSize: 12.0, fontWeight: FontWeight.bold), 
       button: TextStyle(fontSize: 18.0, color: Colors.white),
+      caption: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.normal),
     ),
     inputDecorationTheme: inputDecorationTheme(),
   );

@@ -1,5 +1,4 @@
 
-import 'package:ciapp/constants.dart';
 import 'package:ciapp/models/ci_user.dart';
 import 'package:ciapp/service/database_service.dart';
 import 'package:ciapp/shared/input_decoration.dart';
@@ -20,7 +19,7 @@ class UserDetailsForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var ci_user = context.watch<CIUser>();
+    var ciUser = context.watch<CIUser>();
 
     var user = context.watch<User>();
 
@@ -36,10 +35,10 @@ class UserDetailsForm extends StatelessWidget {
 
     debugPrint("Widget rebuilding");
 
-    firstNameEditingController.text = ci_user.first_name;
-    lastNameEditingController.text = ci_user.last_name;
-    phoneNumberEditingController.text = ci_user.phone_number.toString();
-    addressEditingController.text = ci_user.address;
+    firstNameEditingController.text = ciUser.first_name;
+    lastNameEditingController.text = ciUser.last_name;
+    phoneNumberEditingController.text = ciUser.phone_number.toString();
+    addressEditingController.text = ciUser.address;
 
     return Container(
       child: Form(
@@ -51,7 +50,7 @@ class UserDetailsForm extends StatelessWidget {
               Container(
                 child: TextFormField(
                   controller: firstNameEditingController
-                    ..text = ci_user.first_name,
+                    ..text = ciUser.first_name,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
                   decoration: getInputDecoration("First Name", Icons.person),
@@ -94,13 +93,13 @@ class UserDetailsForm extends StatelessWidget {
                   text: "Save",
                   onTap: () {
                     _formUserDetailKey.currentState.validate();
-                    ci_user.first_name = firstNameEditingController.text;
-                    ci_user.last_name = lastNameEditingController.text;
-                    ci_user.phone_number =
+                    ciUser.first_name = firstNameEditingController.text;
+                    ciUser.last_name = lastNameEditingController.text;
+                    ciUser.phone_number =
                         int.parse(phoneNumberEditingController.text);
-                    ci_user.address = addressEditingController.text;
+                    ciUser.address = addressEditingController.text;
 
-                    DatabaseService().updateCIUser(ci_user);
+                    DatabaseService().updateCIUser(ciUser);
                     Navigator.pop(context);
                   }),
               SizedBox(height: 14), 

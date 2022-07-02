@@ -19,8 +19,8 @@ class FinanceView extends StatelessWidget {
   Widget build(BuildContext context) {
     var user = context.watch<User>();
 
-    var current_month = DateTime.now().month;
-    var current_year = DateTime.now().year;
+    var currentMonth = DateTime.now().month;
+    var currentYear = DateTime.now().year;
     var today = DateTime.now().day;
 
     return Container(
@@ -35,7 +35,7 @@ class FinanceView extends StatelessWidget {
               color: kSecondaryColor,
               alignment: Alignment.center,
               child: Text(
-                  "Finance Summary of ${kMonthNames[current_month - 1]}",
+                  "Finance Summary of ${kMonthNames[currentMonth - 1]}",
                   style: Theme.of(context)
                       .textTheme
                       .headline5
@@ -49,7 +49,7 @@ class FinanceView extends StatelessWidget {
               child: StreamProvider<MonthlySummary>.value(
                 initialData: null,
                 value: DatabaseService().streamMonthlySummary(
-                    user.uid, current_year, current_month),
+                    user.uid, currentYear, currentMonth),
                 child: FinanceChart(),
               ),
             ),
@@ -59,7 +59,7 @@ class FinanceView extends StatelessWidget {
             child: StreamBuilder<MonthlySummary>(
                 initialData: null,
                 stream: DatabaseService().streamMonthlySummary(
-                    user.uid, current_year, current_month),
+                    user.uid, currentYear, currentMonth),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData)
                     return Container(
@@ -71,7 +71,7 @@ class FinanceView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Opening Balance of ${kMonthNames[current_month - 1]} : Rs. ${data.dayIncomeMap[0]}",
+                          "Opening Balance of ${kMonthNames[currentMonth - 1]} : Rs. ${data.dayIncomeMap[0]}",
                           style: TextStyle(
                             fontSize: 14.0,
                             fontWeight: FontWeight.normal)),

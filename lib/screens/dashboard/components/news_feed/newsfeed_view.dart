@@ -52,7 +52,7 @@ class _NewsFeedViewState extends State<NewsFeedView> {
               itemList.insert(
                   itemList.length,
                   BannerAd(
-                    adUnitId: adService.testBannerAdUnitId,
+                    adUnitId: adService.bannerAdUnitId,
                     size: AdSize.fullBanner,
                     request: AdRequest(),
                     listener: adService.banAdListener,
