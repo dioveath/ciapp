@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ciapp/routes.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:device_preview/device_preview.dart';
@@ -16,7 +17,10 @@ Future<void> main() async {
   final adService = AdService(initFuture);
 
   await Firebase.initializeApp();
-  runApp(Provider.value(value: adService, child: MyApp()));
+
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
+    (value) => runApp(Provider.value(value: adService, child: MyApp())));
+
   // child: DevicePreview(enabled: true, builder: (context) => MyApp())));
 }
 
