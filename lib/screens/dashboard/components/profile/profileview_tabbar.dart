@@ -13,7 +13,7 @@ class ProfileViewTabBar extends StatefulWidget {
 
 class _ProfileViewTabBarState extends State<ProfileViewTabBar>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  TabController? _tabController;
 
   initState() {
     _tabController = TabController(length: 3, vsync: this);
@@ -59,7 +59,7 @@ class _ProfileViewTabBarState extends State<ProfileViewTabBar>
                             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20), 
                             child: RichText(
                               text: TextSpan(
-                                style: Theme.of(context).textTheme.headline5.copyWith(
+                                style: Theme.of(context).textTheme.headline5!.copyWith(
                                   color: Colors.white,
                                   fontSize: 20,
                                   fontWeight: FontWeight.normal,
@@ -94,7 +94,7 @@ class AchievementCard extends StatelessWidget {
   String text; 
 
   AchievementCard({
-      Key key,
+      Key? key,
       this.text = "", 
   }) : super(key: key);
 
@@ -113,7 +113,7 @@ class AchievementCard extends StatelessWidget {
             // Spacer(),
             Text(text,
               overflow: TextOverflow.ellipsis, 
-              style: Theme.of(context).textTheme.bodyText2.copyWith(fontSize: 15, fontWeight: FontWeight.normal)),
+              style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 15, fontWeight: FontWeight.normal)),
             // Spacer(),
             Icon(Icons.stars, color: kBackgroundColor),
             // Spacer(),

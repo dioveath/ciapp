@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class ProfileViewSocialMedia extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
-      width: SizeConfig.screenWidth * 0.8, 
+      width: SizeConfig.screenWidth! * 0.8, 
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
       color: Colors.transparent,
       child: Row(
@@ -31,11 +31,11 @@ class ProfileViewSocialMedia extends StatelessWidget {
 }
 
 class SocialMediaLinkCard extends StatelessWidget {
-  String url;
-  IconData socialIcon;
+  String? url;
+  IconData? socialIcon;
 
   SocialMediaLinkCard({
-    Key key,
+    Key? key,
     this.url,
     this.socialIcon, 
   }) : super(key: key);

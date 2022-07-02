@@ -4,22 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CIUser {
-  String doc_id; // doc_id == uid
-  String first_name;
-  String last_name;
-  String rank;
-  String address;
-  String profile_URL;
+  String? doc_id; // doc_id == uid
+  String? first_name;
+  String? last_name;
+  String? rank;
+  String? address;
+  String? profile_URL;
 
-  int phone_number;
-  int exp_points;
-  int level;
-  int hearts;
-  int profileVisits;
+  int? phone_number;
+  int? exp_points;
+  int? level;
+  int? hearts;
+  int? profileVisits;
 
-  DateTime joinedAt;
+  DateTime? joinedAt;
 
-  Map<String, dynamic> roles;
+  Map<String, dynamic>? roles;
 
   static final List<String> levelNames = [
     "Bronze",
@@ -88,7 +88,7 @@ class CIUser {
 
   factory CIUser.fromFirestore(DocumentSnapshot doc) {
     if (doc == null) debugPrint("docsnap null");
-    Map data = doc.data();
+    Map data = doc.data() as Map<dynamic, dynamic>;
 
     var expPoints = data['exp_points'] ?? 1;
     var calculatedLevel = 1;
@@ -142,12 +142,12 @@ class CIUser {
   }
 
   double getCurrentLevelCompletionPercent() {
-    int minLevel = level <= 1 ? 0 : CIUser.levelPoints[level - 2];
-    int maxLevel = level < CIUser.levelPoints.length
-        ? CIUser.levelPoints[level - 1]
+    int minLevel = level! <= 1 ? 0 : CIUser.levelPoints[level! - 2];
+    int maxLevel = level! < CIUser.levelPoints.length
+        ? CIUser.levelPoints[level! - 1]
         : CIUser.levelPoints[CIUser.levelPoints.length - 1];
     int range = maxLevel - minLevel;
-    int current = exp_points - minLevel;
+    int current = exp_points! - minLevel;
     return current / range;
   }
 }

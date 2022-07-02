@@ -12,13 +12,13 @@ import 'feedview_screen.dart';
 class FeedCardWidget extends StatelessWidget {
   FeedArticle feedArticle;
   FeedCardWidget({
-    Key key,
-    @required this.feedArticle,
+    Key? key,
+    required this.feedArticle,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    dom.Document doc = dom.Document.html(feedArticle.body);
+    dom.Document doc = dom.Document.html(feedArticle.body!);
 
     String summary = "";
     List<dom.Element> elements = doc.children;
@@ -38,7 +38,7 @@ class FeedCardWidget extends StatelessWidget {
                 builder: (context) => FeedViewScreen(feedArticle)));
       },
       child: Container(
-        height: SizeConfig.screenWidth * 0.4, 
+        height: SizeConfig.screenWidth! * 0.4, 
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -53,9 +53,9 @@ class FeedCardWidget extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(top: 14),
                     child: Text(
-                      feedArticle.title,
+                      feedArticle.title!,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.headline6.copyWith(
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
                             color: kBackgroundColor,
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -69,7 +69,7 @@ class FeedCardWidget extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       text: TextSpan(
                         text: summary,
-                        style: Theme.of(context).textTheme.bodyText1.copyWith(
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
                               fontSize: 12,
                             ),
                       ),
@@ -93,7 +93,7 @@ class FeedCardWidget extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .overline
+                                    .overline!
                                     .copyWith(color: kBackgroundColor)),
                           ],
                         ),
@@ -113,7 +113,7 @@ class FeedCardWidget extends StatelessWidget {
                                       overflow: TextOverflow.ellipsis,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .overline
+                                          .overline!
                                           .copyWith(
                                             color: kBackgroundColor,
                                             fontWeight: FontWeight.bold,
@@ -125,7 +125,7 @@ class FeedCardWidget extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .overline
+                                    .overline!
                                     .copyWith(
                                         color: kBackgroundColor, fontSize: 8)),
                             Spacer(flex: 2),
@@ -133,10 +133,10 @@ class FeedCardWidget extends StatelessWidget {
                         ),
                         Text(
                             DateFormat('dd MMM yyyy')
-                                .format(feedArticle.createdAt),
+                                .format(feedArticle.createdAt!),
                             style: Theme.of(context)
                                 .textTheme
-                                .overline
+                                .overline!
                                 .copyWith(
                                     color: kBackgroundColor, fontSize: 8)),
                       ],
@@ -150,7 +150,7 @@ class FeedCardWidget extends StatelessWidget {
             Image(
               width: getPWidth(256),
               height: getPHeight(256),
-              image: NetworkImage(feedArticle.imageURL),
+              image: NetworkImage(feedArticle.imageURL!),
             ),
           ],
         ),

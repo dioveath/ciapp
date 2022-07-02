@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class ScreenAppBar extends StatelessWidget {
   const ScreenAppBar({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -30,7 +30,7 @@ class ScreenAppBar extends StatelessWidget {
           Text("Back",
               style: Theme.of(context)
                   .textTheme
-                  .headline6
+                  .headline6!
                   .copyWith(color: kBackgroundColor)),
         ],
       ),

@@ -12,7 +12,7 @@ class FinanceView extends StatelessWidget {
 
 
   FinanceView({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -38,7 +38,7 @@ class FinanceView extends StatelessWidget {
                   "Finance Summary of ${kMonthNames[currentMonth - 1]}",
                   style: Theme.of(context)
                       .textTheme
-                      .headline5
+                      .headline5!
                       .copyWith(color: kBackgroundColor)),
             ),
           ),
@@ -46,7 +46,7 @@ class FinanceView extends StatelessWidget {
             flex: 6,
             child: Container(
               padding: EdgeInsets.only(top: 14, right: 24),
-              child: StreamProvider<MonthlySummary>.value(
+              child: StreamProvider<MonthlySummary?>.value(
                 initialData: null,
                 value: DatabaseService().streamMonthlySummary(
                     user.uid, currentYear, currentMonth),
@@ -65,19 +65,19 @@ class FinanceView extends StatelessWidget {
                     return Container(
                         alignment: Alignment.center,
                         child: CircularProgressIndicator());
-                  var data = snapshot.data;
+                  var data = snapshot.data!;
                   return Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Opening Balance of ${kMonthNames[currentMonth - 1]} : Rs. ${data.dayIncomeMap[0]}",
+                          "Opening Balance of ${kMonthNames[currentMonth - 1]} : Rs. ${data.dayIncomeMap![0]}",
                           style: TextStyle(
                             fontSize: 14.0,
                             fontWeight: FontWeight.normal)),
                         // SizedBox(height: 4.0), 
                         Text(
-                          "Todays Total Balance: Rs. ${data.dayIncomeMap[today - 1]} ",
+                          "Todays Total Balance: Rs. ${data.dayIncomeMap![today - 1]} ",
                           style: TextStyle(
                             fontSize: 14.0,
                             fontWeight: FontWeight.normal)),

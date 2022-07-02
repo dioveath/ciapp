@@ -91,7 +91,7 @@ class _BodyState extends State<Body> {
     );
   }
 
-  AnimatedContainer BlueDot({int index}) {
+  AnimatedContainer BlueDot({int? index}) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 100),
       margin: EdgeInsets.symmetric(horizontal: 2, vertical: 4),

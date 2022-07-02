@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class MonthlySummary {
-  int year = 2021;
-  int month = 1;
-  Map<int, int> dayIncomeMap;
+  int? year = 2021;
+  int? month = 1;
+  Map<int, int?>? dayIncomeMap;
 
   MonthlySummary({this.year, this.month, this.dayIncomeMap});
 
@@ -13,11 +13,11 @@ class MonthlySummary {
     if (doc == null)
       debugPrint("CIAPP ERROR: finance transaction docsnap null");
 
-    Map data = doc.data();
+    Map? data = doc.data() as Map<dynamic, dynamic>?;
     var max = DateUtils.getDaysInMonth(year, month);
 
-    Map<int, int> newMap = new Map<int, int>();
-    int runningAmount = 0;
+    Map<int, int?> newMap = new Map<int, int?>();
+    int? runningAmount = 0;
 
     // debugPrint(data.toString());
 

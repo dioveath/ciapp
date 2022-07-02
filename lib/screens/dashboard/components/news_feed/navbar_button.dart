@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 class NavBarButton extends StatelessWidget {
   Color color;
   double size;
-  Function onTap;
+  Function? onTap;
   IconData iconData;
 
   NavBarButton({
-    Key key,
+    Key? key,
     this.iconData = Icons.upgrade,
     this.color = kPrimaryColor,
     this.size = 24,
@@ -20,7 +20,7 @@ class NavBarButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
-          onTap: onTap, child: Icon(iconData, color: color, size: size)),
+          onTap: onTap as void Function()?, child: Icon(iconData, color: color, size: size)),
     );
   }
 }

@@ -35,10 +35,10 @@ class UserDetailsForm extends StatelessWidget {
 
     debugPrint("Widget rebuilding");
 
-    firstNameEditingController.text = ciUser.first_name;
-    lastNameEditingController.text = ciUser.last_name;
+    firstNameEditingController.text = ciUser.first_name!;
+    lastNameEditingController.text = ciUser.last_name!;
     phoneNumberEditingController.text = ciUser.phone_number.toString();
-    addressEditingController.text = ciUser.address;
+    addressEditingController.text = ciUser.address!;
 
     return Container(
       child: Form(
@@ -50,7 +50,7 @@ class UserDetailsForm extends StatelessWidget {
               Container(
                 child: TextFormField(
                   controller: firstNameEditingController
-                    ..text = ciUser.first_name,
+                    ..text = ciUser.first_name!,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
                   decoration: getInputDecoration("First Name", Icons.person),
@@ -81,7 +81,7 @@ class UserDetailsForm extends StatelessWidget {
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.streetAddress,
                   validator: (value) {
-                    if (value.isEmpty) return "Empty";
+                    if (value!.isEmpty) return "Empty";
                     return "";
                   },
                   onChanged: (value) {},
@@ -92,7 +92,7 @@ class UserDetailsForm extends StatelessWidget {
               CIButton(
                   text: "Save",
                   onTap: () {
-                    _formUserDetailKey.currentState.validate();
+                    _formUserDetailKey.currentState!.validate();
                     ciUser.first_name = firstNameEditingController.text;
                     ciUser.last_name = lastNameEditingController.text;
                     ciUser.phone_number =

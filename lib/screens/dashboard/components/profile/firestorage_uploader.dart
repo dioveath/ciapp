@@ -5,10 +5,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class FireStorageUploader extends StatefulWidget {
-  final File file;
-  final String uid;
+  final File? file;
+  final String? uid;
 
-  FireStorageUploader({Key key, this.file, this.uid}) : super(key: key);
+  FireStorageUploader({Key? key, this.file, this.uid}) : super(key: key);
 
   @override
   _FireStorageUploaderState createState() => _FireStorageUploaderState();
@@ -16,14 +16,14 @@ class FireStorageUploader extends StatefulWidget {
 
 class _FireStorageUploaderState extends State<FireStorageUploader> {
   final FirebaseStorage _storage = FirebaseStorage.instance;
-  UploadTask _uploadTask;
-  String filePath;
+  UploadTask? _uploadTask;
+  late String filePath;
 
   void _startUpload() {
     filePath = '${widget.uid}/profile.png';
 
     setState(() {
-      _uploadTask = _storage.ref().child(filePath).putFile(widget.file);
+      _uploadTask = _storage.ref().child(filePath).putFile(widget.file!);
     });
   }
 
@@ -31,13 +31,13 @@ class _FireStorageUploaderState extends State<FireStorageUploader> {
   Widget build(BuildContext context) {
     if (_uploadTask != null) {
       return StreamBuilder<TaskSnapshot>(
-          stream: _uploadTask.snapshotEvents,
+          stream: _uploadTask!.snapshotEvents,
           builder: (context, snapshots) {
             if (snapshots == null)
               return Container(child: CircularProgressIndicator());
 
-            TaskSnapshot data = snapshots.data;
-            TaskState state = data?.state;
+            TaskSnapshot? data = snapshots.data;
+            TaskState? state = data?.state;
 
             return Column(
               children: [
@@ -45,10 +45,10 @@ class _FireStorageUploaderState extends State<FireStorageUploader> {
                   Column(
                     children: [
                       Text(
-                          "${(data.bytesTransferred / data.totalBytes * 100).toStringAsFixed(2)} % Uploading",
+                          "${(data!.bytesTransferred / data.totalBytes * 100).toStringAsFixed(2)} % Uploading",
                           style: Theme.of(context)
                               .textTheme
-                              .caption
+                              .caption!
                               .copyWith(color: kPrimaryColor)),
                       LinearProgressIndicator(
                           value: data.bytesTransferred / data.totalBytes),
@@ -57,14 +57,14 @@ class _FireStorageUploaderState extends State<FireStorageUploader> {
                 if (state == TaskState.running)
                   IconButton(
                       icon: Icon(Icons.cancel),
-                      onPressed: () => _uploadTask.cancel()),
+                      onPressed: () => _uploadTask!.cancel()),
                 if (state == TaskState.success)
                   Column(
                     children: [
                       Text("Profile changed successfully!",
                           style: Theme.of(context)
                               .textTheme
-                              .bodyText2
+                              .bodyText2!
                               .copyWith(color: Colors.greenAccent)),
                       IconButton(
                           icon: Icon(Icons.check, color: Colors.redAccent),

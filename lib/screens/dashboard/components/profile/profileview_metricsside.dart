@@ -3,11 +3,11 @@ import 'package:ciapp/constants.dart';
 import 'package:flutter/material.dart';
 
 class ProfileMetricsSide extends StatelessWidget {
-  String text = "";
-  Icon icon;
+  String? text = "";
+  Icon? icon;
 
   ProfileMetricsSide({
-    Key key,
+    Key? key,
     this.text,
     this.icon,
   }) : super(key: key);
@@ -24,9 +24,9 @@ class ProfileMetricsSide extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              icon,
-              Text(this.text,
-                  style: Theme.of(context).textTheme.headline6.copyWith(
+              icon!,
+              Text(this.text!,
+                  style: Theme.of(context).textTheme.headline6!.copyWith(
                         fontSize: 16,
                         color: kSecondaryColor,
                       )),

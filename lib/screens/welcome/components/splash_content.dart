@@ -3,11 +3,11 @@ import 'package:ciapp/size_config.dart';
 
 
 class SplashContent extends StatelessWidget {
-  final String text;
-  final String imageLoc;
+  final String? text;
+  final String? imageLoc;
 
   const SplashContent({
-    Key key,
+    Key? key,
     this.text,
     this.imageLoc,
   }) : super(key: key);
@@ -19,9 +19,9 @@ class SplashContent extends StatelessWidget {
         Spacer(),
         Text("Charicha Institute",
             style: Theme.of(context).textTheme.headline5),
-        Text(text, style: Theme.of(context).textTheme.headline6),
+        Text(text!, style: Theme.of(context).textTheme.headline6),
         Spacer(),
-        Image.asset(imageLoc,
+        Image.asset(imageLoc!,
           fit: BoxFit.scaleDown, 
           width: getPHeight(800), 
         ),

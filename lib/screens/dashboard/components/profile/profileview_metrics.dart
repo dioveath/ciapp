@@ -43,14 +43,14 @@ class ProfileViewMetrics extends StatelessWidget {
           ),
           buildBar(),
           Expanded(
-            child: FutureBuilder<List<FeedArticle>>(
+            child: FutureBuilder<List<FeedArticle>?>(
                 future: DatabaseService().getAllUserFeedArticles(ciUser.doc_id),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData)
                   return Container(alignment: Alignment.center,
                     child: CircularProgressIndicator());
                   return ProfileMetricsSide(
-                    text: "${snapshot.data.length}",
+                    text: "${snapshot.data!.length}",
                     icon: Icon(Icons.article, color: kSecondaryColor),
                   );
                 }),

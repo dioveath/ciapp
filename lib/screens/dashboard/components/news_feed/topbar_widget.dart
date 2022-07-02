@@ -31,7 +31,7 @@ class TopBarWidget extends StatelessWidget {
           ),
           SizedBox(width: 14),
           Text("Back to Dashboard",
-              style: Theme.of(context).textTheme.bodyText1.copyWith(
+              style: Theme.of(context).textTheme.bodyText1!.copyWith(
                     fontSize: 16,
                     color: kBackgroundColor,
                   )),

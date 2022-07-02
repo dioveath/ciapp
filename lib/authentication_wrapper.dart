@@ -14,7 +14,7 @@ class AuthenticationWrapper extends StatefulWidget {
 class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<User>();
+    final user = context.watch<User?>();
 
     if (user != null) {
       return DashboardScreen();

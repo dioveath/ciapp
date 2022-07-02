@@ -9,12 +9,12 @@ import 'feedview_mode.dart';
 
 class FeedTitleWidget extends StatelessWidget {
   FeedArticle feedArticle;
-  CIUser writter;
+  CIUser? writter;
 
   FeedTitleWidget(
     this.feedArticle,
     this.writter, {
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -43,7 +43,7 @@ class FeedTitleWidget extends StatelessWidget {
                   child: RichText(
                     text: TextSpan(
                       text: feedArticle.title,
-                      style: Theme.of(context).textTheme.headline6.copyWith(
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
                             fontSize: 22,
                             fontFamily: "Georgia",
                             color: feedViewMode.isDarkMode
@@ -63,11 +63,11 @@ class FeedTitleWidget extends StatelessWidget {
                         children: [
                           Text(
                               writter != null
-                                  ? "${writter.first_name} ${writter.last_name}"
+                                  ? "${writter!.first_name} ${writter!.last_name}"
                                   : "Mr. Nobody",
                               style: Theme.of(context)
                                   .textTheme
-                                  .overline
+                                  .overline!
                                   .copyWith(
                                       color: feedViewMode.isDarkMode
                                           ? kBackgroundColor.withOpacity(0.8)
@@ -77,7 +77,7 @@ class FeedTitleWidget extends StatelessWidget {
                           Text("${feedArticle.getReadTime()} Read",
                               style: Theme.of(context)
                                   .textTheme
-                                  .overline
+                                  .overline!
                                   .copyWith(
                                       color: feedViewMode.isDarkMode
                                           ? kBackgroundColor.withOpacity(0.8)
@@ -86,8 +86,8 @@ class FeedTitleWidget extends StatelessWidget {
                       ),
                       Text(
                           DateFormat('dd MMM yyyy')
-                              .format(feedArticle.createdAt),
-                          style: Theme.of(context).textTheme.overline.copyWith(
+                              .format(feedArticle.createdAt!),
+                          style: Theme.of(context).textTheme.overline!.copyWith(
                               color: feedViewMode.isDarkMode
                                   ? kBackgroundColor.withOpacity(0.8)
                                   : kTitleColor)),

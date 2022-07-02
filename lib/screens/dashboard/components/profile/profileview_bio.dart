@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 class ProfileViewBio extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
-      width: SizeConfig.screenWidth * 0.8,
+      width: SizeConfig.screenWidth! * 0.8,
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children:  [
-          Text("About", style: Theme.of(context).textTheme.bodyText2.copyWith(
+          Text("About", style: Theme.of(context).textTheme.bodyText2!.copyWith(
               fontSize: 20,
               color: kSecondaryColor, 
           )),
@@ -20,7 +20,7 @@ class ProfileViewBio extends StatelessWidget {
             "''',
             overflow: TextOverflow.ellipsis,
             maxLines: 8,
-            style: Theme.of(context).textTheme.bodyText2.copyWith(
+            style: Theme.of(context).textTheme.bodyText2!.copyWith(
               fontWeight: FontWeight.normal,
               fontSize: 14,
               color: kSecondaryColor,

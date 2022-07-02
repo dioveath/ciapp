@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Task {
-  String doc_id;
-  String title;
-  String desc;
+  String? doc_id;
+  String? title;
+  String? desc;
   bool isDone;
-  Map<dynamic, dynamic> todos;
-  DateTime createdAt;
-  DateTime doneAt;
+  Map<dynamic, dynamic>? todos;
+  DateTime? createdAt;
+  DateTime? doneAt;
 
   Task(
       {this.doc_id,
@@ -21,7 +21,7 @@ class Task {
 
   factory Task.fromFirestore(DocumentSnapshot doc) {
     if (doc == null) debugPrint("task docsnap is null");
-    Map data = doc.data();
+    Map data = doc.data() as Map<dynamic, dynamic>;
 
     DateTime _createdAt = DateTime(2000, 1, 1, 1, 1);
     if (data['createdAt'] != null)

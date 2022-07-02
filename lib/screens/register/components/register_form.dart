@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -17,8 +17,8 @@ class RegisterForm extends StatefulWidget {
 
 class _RegisterFormState extends State<RegisterForm> {
   final _registerFormKey = GlobalKey<FormState>();
-  String phone;
-  String password;
+  String? phone;
+  String? password;
 
   final TextEditingController firstNameController = new TextEditingController();
   final TextEditingController lastNameController = new TextEditingController();
@@ -50,7 +50,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 child: Text("Fill your registration form !",
                     style: Theme.of(context)
                         .textTheme
-                        .bodyText1
+                        .bodyText1!
                         .copyWith(color: kPrimaryColor))),
             SizedBox(height: 5),
             buildFirstNameField(),
@@ -91,11 +91,11 @@ class _RegisterFormState extends State<RegisterForm> {
                         FocusScopeNode currentFocus = FocusScope.of(context);
                         if (!currentFocus.hasPrimaryFocus)
                           currentFocus.unfocus();
-                        if (_registerFormKey.currentState.validate()) {
+                        if (_registerFormKey.currentState!.validate()) {
                           setState(() {
                             loading = true;
                           });
-                          _registerFormKey.currentState.save();
+                          _registerFormKey.currentState!.save();
 
                           String result =
                               await Provider.of<AuthenticationService>(context,
@@ -132,7 +132,7 @@ class _RegisterFormState extends State<RegisterForm> {
                       child: Text(
                         "REGISTER",
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.headline5.copyWith(
+                        style: Theme.of(context).textTheme.headline5!.copyWith(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                             fontSize: 24),
@@ -173,7 +173,7 @@ class _RegisterFormState extends State<RegisterForm> {
         child: Text(
           "REGISTER",
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.headline5.copyWith(
+          style: Theme.of(context).textTheme.headline5!.copyWith(
               fontWeight: FontWeight.bold,
               color: Colors.transparent,
               fontSize: 24),
@@ -199,7 +199,7 @@ class _RegisterFormState extends State<RegisterForm> {
         }
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           if (!errors.contains(kPasswordEmptyError))
             setState(() {
               errors.add(kPasswordEmptyError);
@@ -235,7 +235,7 @@ class _RegisterFormState extends State<RegisterForm> {
         }
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           if (!errors.contains(kPhoneEmptyError))
             setState(() {
               errors.add(kPhoneEmptyError);
@@ -263,7 +263,7 @@ class _RegisterFormState extends State<RegisterForm> {
         }
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           if (!errors.contains(kAddressEmptyError))
             setState(() {
               errors.add(kAddressEmptyError);
@@ -293,7 +293,7 @@ class _RegisterFormState extends State<RegisterForm> {
         }
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           if (!errors.contains(kConfirmPasswordEmpty))
             setState(() {
               errors.add(kConfirmPasswordEmpty);
@@ -333,7 +333,7 @@ class _RegisterFormState extends State<RegisterForm> {
         }
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           if (!errors.contains(kEmailEmptyError))
             setState(() {
               errors.add(kEmailEmptyError);
@@ -364,7 +364,7 @@ class _RegisterFormState extends State<RegisterForm> {
         }
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           if (!errors.contains(kFirstNameEmptyError))
             setState(() {
               errors.add(kFirstNameEmptyError);
@@ -389,7 +389,7 @@ class _RegisterFormState extends State<RegisterForm> {
         }
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           if (!errors.contains(kLastNameEmptyError))
             setState(() {
               errors.add(kLastNameEmptyError);
@@ -407,8 +407,8 @@ class FormErrorText extends StatelessWidget {
   final String text;
 
   const FormErrorText({
-    Key key,
-    @required this.text,
+    Key? key,
+    required this.text,
   }) : super(key: key);
 
   @override

@@ -10,7 +10,7 @@ import 'imageselector_dialog.dart';
 
 class ProfileHead extends StatelessWidget {
   const ProfileHead({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -19,10 +19,10 @@ class ProfileHead extends StatelessWidget {
 
     if (ciUser == null) ciUser = CIUser.DefaultUser;
 
-    var roles = ciUser.roles.keys.toList().reversed.toList();
+    var roles = ciUser.roles!.keys.toList().reversed.toList();
 
-    Color levelColor = CIUser.levelColor[ciUser.level - 1];
-    int userLevel = ciUser.level;
+    Color levelColor = CIUser.levelColor[ciUser.level! - 1];
+    int userLevel = ciUser.level!;
 
     return Container(
       alignment: Alignment.center,
@@ -47,9 +47,9 @@ class ProfileHead extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(3000)),
                   child: Image(
                     fit: BoxFit.cover,
-                    image: NetworkImage(ciUser.profile_URL),
-                    width: SizeConfig.screenWidth * 0.38,
-                    height: SizeConfig.screenWidth * 0.38,
+                    image: NetworkImage(ciUser.profile_URL!),
+                    width: SizeConfig.screenWidth! * 0.38,
+                    height: SizeConfig.screenWidth! * 0.38,
                   ),
                 ),
               ),
@@ -84,15 +84,15 @@ class ProfileHead extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "Since ${DateFormat('dd MMM yyyy').format(ciUser.joinedAt)}",
-                    style: Theme.of(context).textTheme.caption.copyWith(
+                    "Since ${DateFormat('dd MMM yyyy').format(ciUser.joinedAt!)}",
+                    style: Theme.of(context).textTheme.caption!.copyWith(
                           color: levelColor,
                           fontSize: 11.0,
                         ),
                   ),
                   Text(
-                    "${ciUser.first_name.toUpperCase()} ${ciUser.last_name.toUpperCase()}",
-                    style: Theme.of(context).textTheme.bodyText2.copyWith(
+                    "${ciUser.first_name!.toUpperCase()} ${ciUser.last_name!.toUpperCase()}",
+                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           color: levelColor,
                           fontSize: 18.0,
                           wordSpacing: 2.3,
@@ -101,7 +101,7 @@ class ProfileHead extends StatelessWidget {
                   ),
                   Text(
                     "${ciUser.rank} of Charicha Institute",
-                    style: Theme.of(context).textTheme.bodyText1.copyWith(
+                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
                           color: levelColor,
                           fontSize: 14.0,
                         ),
@@ -120,14 +120,14 @@ class ProfileHead extends StatelessWidget {
                   children: [
                     Text(
                         "${CIUser.levelNames[userLevel - 1]} - $userLevel",
-                        style: Theme.of(context).textTheme.bodyText2.copyWith(
+                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
                               color: levelColor,
                               fontSize: 14,
                             )),
                     // SizedBox(width: 30),
                     Spacer(),
                     Text("${ciUser.exp_points} XP",
-                        style: Theme.of(context).textTheme.bodyText1.copyWith(
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
                               color: levelColor,
                               fontSize: 14,
                             )),
@@ -153,10 +153,10 @@ class ProfileHead extends StatelessWidget {
                   ],
                 ),
                 Text(
-                    "To ${CIUser.levelNames[userLevel]} - ${CIUser.levelPoints[userLevel - 1] - ciUser.exp_points} XP",
+                    "To ${CIUser.levelNames[userLevel]} - ${CIUser.levelPoints[userLevel - 1] - ciUser.exp_points!} XP",
                     style: Theme.of(context)
                         .textTheme
-                        .bodyText1
+                        .bodyText1!
                         .copyWith(color: levelColor)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -167,7 +167,7 @@ class ProfileHead extends StatelessWidget {
                     Text("${ciUser.hearts} Hearts",
                         style: Theme.of(context)
                             .textTheme
-                            .caption
+                            .caption!
                             .copyWith(color: Colors.redAccent)),
                   ],
                 ),
@@ -176,7 +176,7 @@ class ProfileHead extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Roles",
-                          style: Theme.of(context).textTheme.bodyText2.copyWith(
+                          style: Theme.of(context).textTheme.bodyText2!.copyWith(
                                 color: levelColor,
                               )),
                       Row(children: [
@@ -186,7 +186,7 @@ class ProfileHead extends StatelessWidget {
                                 "${roles[index][0].toUpperCase()}${roles[index].substring(1)}${index != roles.length - 1 ? ', ' : ''}",
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1
+                                    .bodyText1!
                                     .copyWith(color: levelColor))),
                       ]),
                     ],

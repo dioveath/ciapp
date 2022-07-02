@@ -1,3 +1,4 @@
+
 import 'package:ciapp/loading_wrapper.dart';
 import 'package:ciapp/service/ad_service.dart';
 import 'package:ciapp/service/authentication_service.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         Provider<AuthenticationService>(
           create: (_) => AuthenticationService(FirebaseAuth.instance),
         ),
-        StreamProvider(
+        StreamProvider<User?>(
           initialData: null,
           create: (context) =>
               context.read<AuthenticationService>().authStateChanges,

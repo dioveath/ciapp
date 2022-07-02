@@ -7,7 +7,7 @@ import 'feedview_mode.dart';
 
 class BodyImageWidget extends StatelessWidget {
   const BodyImageWidget({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -24,10 +24,10 @@ class BodyImageWidget extends StatelessWidget {
           Image(
               fit: BoxFit.contain,
               // height: getPHeight(600),
-              image: NetworkImage(feedArticle.imageURL)),
+              image: NetworkImage(feedArticle.imageURL!)),
           SizedBox(height: 6),
-          Text("Image credit: ${feedArticle.imageURL.substring(0, 10)}",
-              style: Theme.of(context).textTheme.bodyText1.copyWith(
+          Text("Image credit: ${feedArticle.imageURL!.substring(0, 10)}",
+              style: Theme.of(context).textTheme.bodyText1!.copyWith(
                   color: feedViewMode.isDarkMode
                       ? kBackgroundColor.withOpacity(0.8)
                       : kTitleColor)),

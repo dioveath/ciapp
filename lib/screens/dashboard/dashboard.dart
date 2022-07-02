@@ -14,10 +14,10 @@ class DashboardScreen extends StatelessWidget {
     return Scaffold(
       body: Body(),
       appBar: AppBar(
-        toolbarHeight: SizeConfig.screenHeight * 0.06, //54
+        toolbarHeight: SizeConfig.screenHeight! * 0.06, //54
         backgroundColor: kPrimaryDarkAccentColor,
         title: Text("CHARICHA INSTITUTE",
-            style: Theme.of(context).textTheme.headline6.copyWith(
+            style: Theme.of(context).textTheme.headline6!.copyWith(
                   color: kBackgroundColor,
                   fontWeight: FontWeight.normal,
                   fontSize: 17,

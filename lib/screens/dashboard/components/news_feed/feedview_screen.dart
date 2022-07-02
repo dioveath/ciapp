@@ -10,7 +10,7 @@ import 'topbar_widget.dart';
 
 class FeedViewScreen extends StatelessWidget {
   FeedArticle feedArticle;
-  FeedViewScreen(this.feedArticle, {Key key}) : super(key: key);
+  FeedViewScreen(this.feedArticle, {Key? key}) : super(key: key);
   FeedViewMode feedViewMode = new FeedViewMode();
 
   @override
@@ -22,7 +22,7 @@ class FeedViewScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          height: SizeConfig.screenHeight - MediaQuery.of(context).padding.top,
+          height: SizeConfig.screenHeight! - MediaQuery.of(context).padding.top,
           child: Column(
             children: [
               ChangeNotifierProvider<FeedViewMode>.value(

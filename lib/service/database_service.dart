@@ -17,7 +17,7 @@ class DatabaseService {
 
   DatabaseService._internal();
 
-  Stream<CIUser> streamCIUser(String uid) {
+  Stream<CIUser> streamCIUser(String? uid) {
     return _db
         .collection('ci_users')
         .doc(uid)
@@ -25,15 +25,17 @@ class DatabaseService {
         .map((snap) => CIUser.fromFirestore(snap));
   }
 
-  Future<CIUser> getCIUser(String uid) async {
+  Future<CIUser> getCIUser(String? uid) async {
     try {
-      return await _db
+      CIUser user = await _db
           .collection('ci_users')
           .doc(uid)
           .get()
           .then((docSnap) => CIUser.fromFirestore(docSnap));
+      return user;
     } on Exception catch (e) {
       debugPrint("CIAPP ERROR: " + e.toString());
+      throw e;
     }
   }
 
@@ -52,7 +54,7 @@ class DatabaseService {
         "address": address,
         "profile_URL":
             "https://scontent.fbir2-1.fna.fbcdn.net/v/t1.6435-9/186245676_328614285276080_2606505843490955899_n.png?_nc_cat=108&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=3YWbXntm4qUAX-5TyqS&_nc_ht=scontent.fbir2-1.fna&oh=6c79d7d4a94d5ec515646aa8b23021eb&oe=60D4B9CA",
-            "phone_number": int.parse(phoneNumber),
+        "phone_number": int.parse(phoneNumber),
         "exp_points": 0,
         "level": 1,
         "hearts": 0,
@@ -64,20 +66,20 @@ class DatabaseService {
       });
     } on Exception catch (e) {
       debugPrint("CIAPP ERROR: " + e.toString());
-      return "Error";
+      throw e;
     }
   }
 
-  Future<void> updateCIUser(CIUser ciUser) {
+  Future<void> updateCIUser(CIUser ciUser) async {
     try {
       var ref = _db.collection('ci_users').doc(ciUser.doc_id);
-      ref.update(ciUser.toUpdatableFieldOnlyMap());
+      await ref.update(ciUser.toUpdatableFieldOnlyMap());
     } on Exception catch (e) {
       debugPrint("CIAPP ERROR: " + e.toString());
     }
   }
 
-  Stream<List<Task>> streamTask(String uid) {
+  Stream<List<Task>>? streamTask(String uid) {
     try {
       var ref = _db
           .collection("ci_users")
@@ -93,31 +95,33 @@ class DatabaseService {
     return null;
   }
 
-  Future<DocumentReference> addTask(String uid, Task task) {
+  Future<DocumentReference> addTask(String uid, Task task) async {
     try {
       var ref = _db.collection("ci_users").doc(uid).collection("tasks");
       return ref.add(task.toMap());
     } on Exception catch (e) {
       debugPrint("CIAPP ERROR: " + e.toString());
+      throw e;
     }
   }
 
-  Future<void> updateTask(String uid, Task task) {
+  Future<void> updateTask(String uid, Task task) async {
     try {
       var ref = _db
           .collection("ci_users")
           .doc(uid)
           .collection("tasks")
           .doc(task.doc_id);
-      return ref.update(task.toMap());
+      await ref.update(task.toMap());
     } on Exception catch (e) {
       debugPrint("CIAPP ERROR: " + e.toString());
+      throw e;
     }
   }
 
-  Future<void> deleteTask(String uid, Task task) {
+  Future<void> deleteTask(String uid, Task task) async {
     try {
-      _db
+      await _db
           .collection("ci_users")
           .doc(uid)
           .collection("tasks")
@@ -125,6 +129,7 @@ class DatabaseService {
           .delete();
     } on Exception catch (e) {
       debugPrint("CIAPP ERROR(DATABASE): " + e.toString());
+      throw e;
     }
   }
 
@@ -133,12 +138,13 @@ class DatabaseService {
       return _db
           .collection("finance")
           .doc(year.toString())
-          .collection(kMonthNames[month-1].toLowerCase())
+          .collection(kMonthNames[month - 1].toLowerCase())
           .doc("daily_summary")
           .snapshots()
           .map((doc) => MonthlySummary.fromFirestore(doc, year, month));
     } on Exception catch (e) {
       debugPrint("CIAPP ERROR(DATABASE): " + e.toString());
+      throw e;
     }
   }
 
@@ -148,10 +154,11 @@ class DatabaseService {
           list.docs.map((doc) => FeedArticle.fromFirestore(doc)).toList());
     } on Exception catch (e) {
       debugPrint("CIAPP ERROR(DATABASE): " + e.toString());
+      throw e;
     }
   }
 
-  Future<List<FeedArticle>> getAllFeedArticles() async {
+  Future<List<FeedArticle>?> getAllFeedArticles() async {
     try {
       return await _db
           .collection("articles")
@@ -187,7 +194,7 @@ class DatabaseService {
     }
   }
 
-  Future<List<FeedArticle>> getAllUserFeedArticles(String uid) async {
+  Future<List<FeedArticle>?> getAllUserFeedArticles(String? uid) async {
     try {
       return await _db
           .collection("articles")
@@ -213,6 +220,7 @@ class DatabaseService {
           .map((snap) => FeedArticle.fromFirestore(snap));
     } on Exception catch (e) {
       debugPrint("CIAPP ERROR(DATABASE): " + e.toString());
+      throw e;
     }
   }
 
@@ -222,6 +230,7 @@ class DatabaseService {
       return ref.update(article.toUpdatableFieldOnlyMap());
     } on Exception catch (e) {
       debugPrint("CIAPP ERROR: " + e.toString());
+      throw e;
     }
   }
 }

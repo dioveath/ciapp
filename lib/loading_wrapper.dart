@@ -27,7 +27,7 @@ class _LoadingWrapperState extends State<LoadingWrapper>
     // await Future.delayed(Duration(seconds: 3));
 
     SharedPreferences pref = await SharedPreferences.getInstance();
-    bool seen = pref.getBool("seen");
+    bool? seen = pref.getBool("seen");
 
     if (seen == null) {
       pref.setBool("seen", true);

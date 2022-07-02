@@ -8,20 +8,20 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageSelectorDialog extends StatefulWidget {
-  String uid;
+  String? uid;
 
-  ImageSelectorDialog({Key key, this.uid}) : super(key: key);
+  ImageSelectorDialog({Key? key, this.uid}) : super(key: key);
 
   @override
   _ImageSelectorDialogState createState() => _ImageSelectorDialogState();
 }
 
 class _ImageSelectorDialogState extends State<ImageSelectorDialog> {
-  File _imageFile;
+  File? _imageFile;
   final picker = ImagePicker();
 
   Future<void> _pickImage(ImageSource source) async {
-    PickedFile selectedImage = await picker.getImage(source: source);
+    PickedFile? selectedImage = await picker.getImage(source: source);
 
     if (selectedImage != null) {
       setState(() {
@@ -31,8 +31,8 @@ class _ImageSelectorDialogState extends State<ImageSelectorDialog> {
   }
 
   Future<void> _cropImage() async {
-    File croppedFile =
-        await new ImageCropper().cropImage(sourcePath: _imageFile.path);
+    File? croppedFile =
+        await new ImageCropper().cropImage(sourcePath: _imageFile!.path);
 
     setState(() {
       _imageFile = croppedFile ?? _imageFile;
@@ -51,7 +51,7 @@ class _ImageSelectorDialogState extends State<ImageSelectorDialog> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _imageFile != null
-                ? Image.file(_imageFile, width: 256, height: 256)
+                ? Image.file(_imageFile!, width: 256, height: 256)
                 : Text("Please select an image!"),
             Spacer(),
             _imageFile != null
@@ -104,10 +104,10 @@ class _ImageSelectorDialogState extends State<ImageSelectorDialog> {
     );
   }
 
-  InkWell buildInkWell({Icon icon, Function onTap}) {
+  InkWell buildInkWell({Icon? icon, Function? onTap}) {
     return InkWell(
       // splashColor: kBackgroundCol,
-      onTap: onTap,
+      onTap: onTap as void Function()?,
       child:
           Container(width: 140, height: 60, color: kPrimaryColor, child: icon),
     );

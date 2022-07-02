@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 class NavButton extends StatelessWidget {
   Icon icon;
   String text;
-  Function onTap = () {};
+  Function? onTap = () {};
 
   NavButton(
     this.icon,
     this.text, {
-    Key key,
+    Key? key,
     this.onTap,
   }) : super(key: key);
 
@@ -19,12 +19,12 @@ class NavButton extends StatelessWidget {
     return Material(
       color: kPrimaryAltAccentColor,
       child: InkWell(
-        onTap: onTap,
+        onTap: onTap as void Function()?,
         child: ClipRRect(
           // borderRadius: BorderRadius.circular(5.0),
           // clipBehavior: Clip.hardEdge, 
           child: Container(
-            width: SizeConfig.screenWidth / 3,
+            width: SizeConfig.screenWidth! / 3,
             decoration: BoxDecoration(
               border: Border.all(
                 color: kBackgroundColor, width: 0.5, style: BorderStyle.solid),
@@ -37,7 +37,7 @@ class NavButton extends StatelessWidget {
                 SizedBox(height: 6), 
                 // Icon(FontAwesomeIcons.docker, size: 32, color: kBackgroundColor),
                 Text(text,
-                    style: Theme.of(context).textTheme.headline6.copyWith(
+                    style: Theme.of(context).textTheme.headline6!.copyWith(
                           fontSize: 13,
                           color: kBackgroundColor,
                           fontWeight: FontWeight.normal,

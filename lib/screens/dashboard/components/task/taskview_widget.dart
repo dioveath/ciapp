@@ -8,9 +8,9 @@ import 'package:provider/provider.dart';
 import 'taskview_screen.dart';
 
 class TaskWidget extends StatefulWidget {
-  final Task task;
+  final Task? task;
 
-  TaskWidget({Key key, this.task}) : super(key: key);
+  TaskWidget({Key? key, this.task}) : super(key: key);
 
   @override
   _TaskWidgetState createState() => _TaskWidgetState();
@@ -44,15 +44,15 @@ class _TaskWidgetState extends State<TaskWidget> {
           InkWell(
               onTap: () {
                 setState(() {
-                  widget.task.isDone = !widget.task.isDone;
-                  DatabaseService().updateTask(user.uid, widget.task);
+                  widget.task!.isDone = !widget.task!.isDone;
+                  DatabaseService().updateTask(user.uid, widget.task!);
                 });
               },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Icon(
                   Icons.done,
-                  color: widget.task.isDone ? Colors.greenAccent : Colors.white,
+                  color: widget.task!.isDone ? Colors.greenAccent : Colors.white,
                   size: 24,
                 ),
               )),
@@ -69,19 +69,19 @@ class _TaskWidgetState extends State<TaskWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.task.title ?? "Untitled task!",
+                  Text(widget.task!.title ?? "Untitled task!",
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodyText2.copyWith(
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
                             fontSize: 13,
-                            color: widget.task.isDone
+                            color: widget.task!.isDone
                                 ? Colors.greenAccent
                                 : Colors.white,
                           )),
-                  Text(widget.task.desc ?? "Unkown description!",
+                  Text(widget.task!.desc ?? "Unkown description!",
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodyText1.copyWith(
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
                             fontSize: 12,
-                            color: widget.task.isDone
+                            color: widget.task!.isDone
                                 ? Colors.greenAccent
                                 : Colors.white,
                           )),
@@ -114,12 +114,12 @@ class _TaskWidgetState extends State<TaskWidget> {
                         ]);
                   }).then((delete) {
                 if (delete) {
-                  DatabaseService().deleteTask(user.uid, widget.task);
+                  DatabaseService().deleteTask(user.uid, widget.task!);
                 }
               });
             },
             child: Icon(Icons.delete,
-                color: widget.task.isDone ? Colors.red : Colors.white),
+                color: widget.task!.isDone ? Colors.red : Colors.white),
           ),
         ],
       ),

@@ -2,17 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class FeedArticle {
-  String doc_id = "NULL ID";
-  String title = "Title";
-  String body = "Description";
-  String imageURL = "URL";
+  String? doc_id = "NULL ID";
+  String? title = "Title";
+  String? body = "Description";
+  String? imageURL = "URL";
 
   // String summary = ""; // this is only for
 
-  String writtenBy = "NULL WRITER";
-  DateTime createdAt;
-  int likes = 100;
-  Map<dynamic, dynamic> heartsBy;
+  String? writtenBy = "NULL WRITER";
+  DateTime? createdAt;
+  int? likes = 100;
+  Map<dynamic, dynamic>? heartsBy;
 
   FeedArticle({
     this.doc_id,
@@ -26,7 +26,7 @@ class FeedArticle {
   });
 
   String getReadTime() {
-    double readTimeSec = body.length / 700 * 60;
+    double readTimeSec = body!.length / 700 * 60;
     int readTimeMin = 0;
     String suffix = "Sec";
     if (readTimeSec >= 60) {
@@ -38,7 +38,7 @@ class FeedArticle {
 
   factory FeedArticle.fromFirestore(DocumentSnapshot doc) {
     if (doc == null) debugPrint("Task docsnap is null!");
-    Map data = doc.data();
+    Map data = doc.data() as Map<dynamic, dynamic>;
 
     // debugPrint(data.toString());
 

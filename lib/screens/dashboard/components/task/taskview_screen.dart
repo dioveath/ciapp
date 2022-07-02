@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 
 class TaskViewScreen extends StatefulWidget {
 
-  Task task;
+  Task? task;
   TaskViewScreen(this.task);
 
   @override
@@ -25,10 +25,10 @@ class _TaskViewScreenState extends State<TaskViewScreen> {
 
   initState() {
     super.initState();
-    _todosMapToList(widget.task.todos);
+    _todosMapToList(widget.task!.todos as Map<String?, dynamic>?);
   }
 
-  void _todosMapToList(Map<String, dynamic> todosMap) {
+  void _todosMapToList(Map<String?, dynamic>? todosMap) {
     todosList = [];
     if (todosMap != null) {
       int i = 0;
@@ -38,11 +38,11 @@ class _TaskViewScreenState extends State<TaskViewScreen> {
   }
 
   void _todosListToMap(List<Todo> todosList) {
-    Map<String, dynamic> newTodosMapped = {};
+    Map<String?, dynamic> newTodosMapped = {};
     for (var todo in todosList) {
       newTodosMapped[todo.todoDesc] = todo.isDone;
     }
-    widget.task.todos = newTodosMapped;
+    widget.task!.todos = newTodosMapped;
   }
 
   void dispose() {
@@ -53,19 +53,19 @@ class _TaskViewScreenState extends State<TaskViewScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    var task = widget.task;
+    var task = widget.task!;
     var user = Provider.of<User>(context);
 
-    titleController.text = widget.task.title;
-    descController.text = widget.task.desc;
+    titleController.text = widget.task!.title!;
+    descController.text = widget.task!.desc!;
 
     String createdAt = "Who knows!!";
-    if (widget.task.doneAt != null)
-      createdAt = DateFormat('dd MMM yyyy').format(widget.task.createdAt);
+    if (widget.task!.doneAt != null)
+      createdAt = DateFormat('dd MMM yyyy').format(widget.task!.createdAt!);
 
     String doneAt = "Not done yet!";
-    if (widget.task.doneAt != null)
-      doneAt = DateFormat('dd MMM yyyy').format(widget.task.doneAt);
+    if (widget.task!.doneAt != null)
+      doneAt = DateFormat('dd MMM yyyy').format(widget.task!.doneAt!);
 
     Color textColor = Colors.white;
 
@@ -83,7 +83,7 @@ class _TaskViewScreenState extends State<TaskViewScreen> {
           child: SafeArea(
             child: Container(
               height:
-                  SizeConfig.screenHeight - MediaQuery.of(context).padding.top,
+                  SizeConfig.screenHeight! - MediaQuery.of(context).padding.top,
               // padding: EdgeInsets.symmetric(horizontal: 18, vertical: 10),
               color: kBackgroundColor,
               child: Column(
@@ -241,11 +241,11 @@ class _TaskViewScreenState extends State<TaskViewScreen> {
             onTap: () {
               _todosListToMap(todosList);
               if (task.doc_id == null) {
-                widget.task.createdAt = DateTime.now();
-                DatabaseService().addTask(user.uid, widget.task);
+                widget.task!.createdAt = DateTime.now();
+                DatabaseService().addTask(user.uid, widget.task!);
               } else {
-                if (widget.task.isDone) widget.task.doneAt = DateTime.now();
-                DatabaseService().updateTask(user.uid, widget.task);
+                if (widget.task!.isDone) widget.task!.doneAt = DateTime.now();
+                DatabaseService().updateTask(user.uid, widget.task!);
               }
               Navigator.pop(context);
             },

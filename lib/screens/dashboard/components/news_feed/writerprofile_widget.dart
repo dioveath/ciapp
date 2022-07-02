@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class WriterProfileWidget extends StatelessWidget {
-  CIUser writter;
+  CIUser? writter;
   WriterProfileWidget({
-    Key key,
+    Key? key,
     this.writter,
   }) : super(key: key);
 
@@ -30,16 +30,16 @@ class WriterProfileWidget extends StatelessWidget {
         child: Row(
           children: [
             ProfileCard(
-              borderColor: CIUser.levelColor[writter.level-1],
-              url: writter.profile_URL,
+              borderColor: CIUser.levelColor[writter!.level!-1],
+              url: writter!.profile_URL,
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            ProfileViewScreen(writter.doc_id)));
+                            ProfileViewScreen(writter!.doc_id)));
               },
-              width: writter.level + 1.0,
+              width: writter!.level! + 1.0,
             ),
             SizedBox(width: 14),
             Container(
@@ -49,7 +49,7 @@ class WriterProfileWidget extends StatelessWidget {
               children: [
                 RichText(
                   text: TextSpan(
-                      style: Theme.of(context).textTheme.bodyText2.copyWith(
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           color: feedViewMode.isDarkMode
                               ? Colors.white
                               : kSecondaryColor,

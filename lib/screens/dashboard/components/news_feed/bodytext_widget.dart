@@ -5,10 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 class BodyTextWidget extends StatelessWidget {
-  String htmlBody;
+  String? htmlBody;
 
   BodyTextWidget({
-    Key key,
+    Key? key,
     this.htmlBody,
   }) : super(key: key);
 

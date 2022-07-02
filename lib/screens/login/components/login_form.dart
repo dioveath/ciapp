@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -17,8 +17,8 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
-  String phone;
-  String password;
+  String? phone;
+  String? password;
 
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
@@ -88,7 +88,7 @@ class _LoginFormState extends State<LoginForm> {
         }
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           if (!errors.contains(kPasswordEmptyError))
             setState(() {
               errors.add(kPasswordEmptyError);
@@ -124,7 +124,7 @@ class _LoginFormState extends State<LoginForm> {
         }
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           if (!errors.contains(kPhoneEmptyError))
             setState(() {
               errors.add(kPhoneEmptyError);
@@ -161,7 +161,7 @@ class _LoginFormState extends State<LoginForm> {
         }
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           if (!errors.contains(kEmailEmptyError))
             setState(() {
               errors.add(kEmailEmptyError);
@@ -184,11 +184,11 @@ class _LoginFormState extends State<LoginForm> {
     FocusScopeNode currentFocus = FocusScope.of(context);
     if (!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
 
-    if (_formKey.currentState.validate()) {
+    if (_formKey.currentState!.validate()) {
       setState(() {
         loading = true;
       });
-      _formKey.currentState.save();
+      _formKey.currentState!.save();
 
       debugPrint(emailController.text);
       debugPrint(passwordController.text);
@@ -220,8 +220,8 @@ class FormErrorText extends StatelessWidget {
   final String text;
 
   const FormErrorText({
-    Key key,
-    @required this.text,
+    Key? key,
+    required this.text,
   }) : super(key: key);
 
   @override

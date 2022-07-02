@@ -16,10 +16,10 @@ class NewsFeedView extends StatefulWidget {
 }
 
 class _NewsFeedViewState extends State<NewsFeedView> {
-  StreamController<FeedArticle> _streamController;
+  StreamController<FeedArticle>? _streamController;
   List<FeedArticle> feedArticles = [];
 
-  List<Object> itemList;
+  late List<Object> itemList;
 
   initState() {
     super.initState();
@@ -38,13 +38,13 @@ class _NewsFeedViewState extends State<NewsFeedView> {
   void initList() {
     _streamController?.close();
     _streamController = StreamController.broadcast();
-    pipeArticles(_streamController);
+    pipeArticles(_streamController!);
     final adService = Provider.of<AdService>(context);
 
     feedArticles.clear();
     itemList = List.from(feedArticles);
 
-    _streamController.stream.listen((article) => setState(() {
+    _streamController!.stream.listen((article) => setState(() {
           itemList.add(article);
 
           adService.initialization.then((status) {
@@ -105,7 +105,7 @@ class _NewsFeedViewState extends State<NewsFeedView> {
                   setState(() {
                     initList();
                   });
-                },
+                } as Future<void> Function(),
                 child: Container(
                   child: ListView.builder(
                       itemCount: itemList.length,

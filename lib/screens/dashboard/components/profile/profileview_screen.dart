@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'profileview_body.dart';
 
 class ProfileViewScreen extends StatelessWidget {
-  String uid;
+  String? uid;
   ProfileViewScreen(this.uid);
 
   @override
@@ -22,10 +22,10 @@ class ProfileViewScreen extends StatelessWidget {
           builder: (context, snapshot) {
             if (!snapshot.hasData)
               return Container(child: CircularProgressIndicator());
-            CIUser ciUser = snapshot.data;
+            CIUser ciUser = snapshot.data as CIUser;
             if (ciUser.doc_id != authUser.uid && ciUser.profileVisits != null) {
-              ciUser.profileVisits++;
-              ciUser.exp_points++;
+              ciUser.profileVisits = ciUser.profileVisits! + 1;
+              ciUser.exp_points = ciUser.exp_points! + 1;
               DatabaseService().updateCIUser(ciUser);
             }
             return ProfileViewBody(ciUser);

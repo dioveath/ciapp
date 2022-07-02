@@ -26,7 +26,7 @@ class _BodyState extends State<Body> {
           child: SizedBox(
             width: double.infinity,
             height:
-                SizeConfig.screenHeight - MediaQuery.of(context).padding.top,
+                SizeConfig.screenHeight! - MediaQuery.of(context).padding.top,
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white10,
@@ -96,11 +96,11 @@ class _BodyState extends State<Body> {
 
 class TextLink extends StatelessWidget {
   final String text;
-  final Function onTapFunction;
+  final Function? onTapFunction;
   final Alignment alignment;
 
   const TextLink({
-    Key key,
+    Key? key,
     this.text = "textlink",
     this.onTapFunction,
     this.alignment = Alignment.centerLeft,
@@ -111,7 +111,7 @@ class TextLink extends StatelessWidget {
     return Container(
       alignment: alignment,
       child: GestureDetector(
-          onTap: onTapFunction,
+          onTap: onTapFunction as void Function()?,
           child: Text(text,
               style: TextStyle(
                 fontSize: 18,

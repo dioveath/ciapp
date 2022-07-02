@@ -10,7 +10,7 @@ import 'profile_card.dart';
 
 class ProfileBar extends StatelessWidget {
   const ProfileBar({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -23,10 +23,10 @@ class ProfileBar extends StatelessWidget {
 
     var streamUser = DatabaseService().streamCIUser(ciUser.doc_id);
 
-    Color levelColor = CIUser.levelColor[ciUser.level - 1];
-    double expBarWidth = SizeConfig.screenWidth * 0.3;
+    Color levelColor = CIUser.levelColor[ciUser.level! - 1];
+    double expBarWidth = SizeConfig.screenWidth! * 0.3;
 
-    int userLevel = ciUser.level;
+    int userLevel = ciUser.level!;
 
     return Container(
       color: kPrimaryColor,
@@ -77,7 +77,7 @@ class ProfileBar extends StatelessWidget {
                     ],
                   ),
                   Text(
-                      "To ${CIUser.levelNames[userLevel]} - ${CIUser.levelPoints[userLevel - 1] - ciUser.exp_points} XP",
+                      "To ${CIUser.levelNames[userLevel]} - ${CIUser.levelPoints[userLevel - 1] - ciUser.exp_points!} XP",
                       style: Theme.of(context).textTheme.bodyText1)
                 ],
               ),
@@ -89,11 +89,11 @@ class ProfileBar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    ciUser.first_name +
+                    ciUser.first_name! +
                         " " +
-                        ciUser.last_name +
+                        ciUser.last_name! +
                         "\n" +
-                        ciUser.rank,
+                        ciUser.rank!,
                     style: Theme.of(context).textTheme.bodyText2,
                     textDirection: TextDirection.rtl,
                   ),

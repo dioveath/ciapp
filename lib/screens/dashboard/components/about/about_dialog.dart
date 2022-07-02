@@ -7,8 +7,8 @@ class AboutUsDialog extends StatelessWidget {
     return Dialog(
       backgroundColor: kSecondaryColor,
       child: SizedBox(
-        width: SizeConfig.screenWidth * 0.7,
-        height: SizeConfig.screenWidth * 0.9,
+        width: SizeConfig.screenWidth! * 0.7,
+        height: SizeConfig.screenWidth! * 0.9,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 24, vertical: 18),
           child: Column(
@@ -20,8 +20,8 @@ class AboutUsDialog extends StatelessWidget {
               Container(
                   padding: EdgeInsets.all(0),
                   child: Image(
-                      width: SizeConfig.screenWidth * 0.3,
-                      height: SizeConfig.screenWidth * 0.3,
+                      width: SizeConfig.screenWidth! * 0.3,
+                      height: SizeConfig.screenWidth! * 0.3,
                       image: AssetImage("assets/images/ci_logo_alpha.png"))),
               Text(
                   "Charicha Institute helps interested students to learn and use their computer skills from basic course to advance course like programming in real world. Come join us and grow.",

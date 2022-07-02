@@ -17,13 +17,13 @@ class ProfileViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: SizedBox(
-        height: SizeConfig.screenHeight - MediaQuery.of(context).padding.top,
+        height: SizeConfig.screenHeight! - MediaQuery.of(context).padding.top,
         child: Stack(
           children: [
             Container(
               color: kPrimaryColor,
               width: double.infinity,
-              height: SizeConfig.screenHeight * 0.17,
+              height: SizeConfig.screenHeight! * 0.17,
             ),
             SizedBox(
               height: SizeConfig.screenHeight,

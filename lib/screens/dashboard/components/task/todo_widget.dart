@@ -6,9 +6,9 @@ class TodoWidget extends StatefulWidget {
   Function(Todo) onTodoChanged;
 
   TodoWidget({
-    Key key,
-    @required this.todo,
-    @required this.onTodoChanged,
+    Key? key,
+    required this.todo,
+    required this.onTodoChanged,
   }) : super(key: key);
 
   @override
@@ -20,9 +20,9 @@ class _TodoWidgetState extends State<TodoWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var textColor = widget.todo.isDone ? Colors.greenAccent : kBackgroundColor;
+    var textColor = widget.todo.isDone! ? Colors.greenAccent : kBackgroundColor;
 
-    todoController.text = widget.todo.todoDesc;
+    todoController.text = widget.todo.todoDesc!;
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
@@ -34,11 +34,11 @@ class _TodoWidgetState extends State<TodoWidget> {
           InkWell(
               onTap: () {
                 setState(() {
-                  widget.todo.isDone = !widget.todo.isDone;
+                  widget.todo.isDone = !widget.todo.isDone!;
                 });
               },
               child: Icon(Icons.done,
-                  color: widget.todo.isDone ? Colors.greenAccent : textColor,
+                  color: widget.todo.isDone! ? Colors.greenAccent : textColor,
                   size: 16)),
           SizedBox(width: 20),
           Flexible(
@@ -66,8 +66,8 @@ class _TodoWidgetState extends State<TodoWidget> {
 
 class Todo {
   int index;
-  String todoDesc;
-  bool isDone;
+  String? todoDesc;
+  bool? isDone;
 
   Todo({this.index = -1, this.todoDesc, this.isDone});
 }

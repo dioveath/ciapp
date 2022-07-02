@@ -13,8 +13,8 @@ class LikeCountWidget extends StatefulWidget {
   FeedArticle feedArticle;
 
   LikeCountWidget({
-    Key key,
-    @required this.feedArticle,
+    Key? key,
+    required this.feedArticle,
   }) : super(key: key);
 
   @override
@@ -27,10 +27,10 @@ class _LikeCountWidgetState extends State<LikeCountWidget> {
     FeedViewMode feedViewMode = context.watch<FeedViewMode>();
     var user = context.watch<User>();
 
-    Map<dynamic, dynamic> heartsBy = widget.feedArticle.heartsBy;
+    Map<dynamic, dynamic>? heartsBy = widget.feedArticle.heartsBy;
     if (heartsBy == null) heartsBy = {};
     bool hasLiked = heartsBy.containsKey(user.uid);
-    int likeCount = 0;
+    int? likeCount = 0;
     if (hasLiked) likeCount = heartsBy[user.uid] > 5 ? 5 : heartsBy[user.uid];
 
     Color textColor = feedViewMode.isDarkMode ? kBackgroundColor : kTitleColor;
@@ -49,7 +49,7 @@ class _LikeCountWidgetState extends State<LikeCountWidget> {
         children: [
           // Expanded(
           Container(
-            width: 48.0 + likeCount * 8.0,
+            width: 48.0 + likeCount! * 8.0,
             child: Stack(
               children: [
                 ...List.generate(likeCount, (index) {
@@ -65,7 +65,7 @@ class _LikeCountWidgetState extends State<LikeCountWidget> {
                           color: feedViewMode.isDarkMode
                               ? Colors.white
                               : Colors.redAccent
-                                  .withOpacity(1 - index / (likeCount + 1)),
+                                  .withOpacity(1 - index / (likeCount! + 1)),
                           size: 24 - index * 2.0),
                     ),
                   );
@@ -88,16 +88,18 @@ class _LikeCountWidgetState extends State<LikeCountWidget> {
                           size: 24,
                           onTap: () {
                             setState(() {
-                              if (writter.doc_id != user.uid) {
-                                if (!widget.feedArticle.heartsBy
+                              if (writter!.doc_id != user.uid) {
+                                if (!widget.feedArticle.heartsBy!
                                     .containsKey(user.uid))
-                                  widget.feedArticle.heartsBy[user.uid] = 0;
-                                widget.feedArticle.heartsBy[user.uid]++;
-                                widget.feedArticle.likes++;
+                                  widget.feedArticle.heartsBy![user.uid] = 0;
+                                widget.feedArticle.heartsBy![user.uid]++;
+
+                                widget.feedArticle.likes =
+                                    widget.feedArticle.likes! + 1;
                                 DatabaseService()
                                     .updateArticle(widget.feedArticle);
-                                writter.hearts++;
-                                writter.exp_points = writter.exp_points + 2;
+                                writter.hearts = writter.hearts! + 1;
+                                writter.exp_points = writter.exp_points! + 2;
                                 debugPrint("hearts:  ${writter.hearts}");
                                 debugPrint("exp_points: ${writter.exp_points}");
                                 DatabaseService().updateCIUser(writter);
@@ -110,13 +112,13 @@ class _LikeCountWidgetState extends State<LikeCountWidget> {
           ),
           // ),
           Text("${widget.feedArticle.likes} hearts for this Article.",
-              style: Theme.of(context).textTheme.bodyText2.copyWith(
-                color: textColor, 
+              style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    color: textColor,
                   )),
           Spacer(),
           NavBarButton(
             iconData: Icons.donut_large,
-            color: textColor, 
+            color: textColor,
           ),
         ],
       ),

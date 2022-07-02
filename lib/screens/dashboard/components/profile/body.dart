@@ -26,7 +26,7 @@ class Body extends StatelessWidget {
               Container(
                 color: kPrimaryColor,
                 width: double.infinity,
-                height: SizeConfig.screenHeight * 0.17,
+                height: SizeConfig.screenHeight! * 0.17,
               ),
               SingleChildScrollView(
                 child: Column(

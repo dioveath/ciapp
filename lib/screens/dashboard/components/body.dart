@@ -53,10 +53,10 @@ class _BodyState extends State<Body> {
                   alignment: Alignment.center,
                   child: CircularProgressIndicator());
 
-            CIUser ciUser = snapshot.data;
-            if (ciUser.roles.containsKey("ceo") ||
-                ciUser.roles.containsKey("cfo") ||
-                ciUser.roles.containsKey("manager")) {
+            CIUser ciUser = snapshot.data as CIUser;
+            if (ciUser.roles!.containsKey("ceo") ||
+                ciUser.roles!.containsKey("cfo") ||
+                ciUser.roles!.containsKey("manager")) {
               return FinanceView();
             } else
               return ProfileViewBody(ciUser, dashboardView: true);
@@ -72,13 +72,13 @@ class _BodyState extends State<Body> {
         child: SingleChildScrollView(
             child: SizedBox(
                 width: double.infinity,
-                height: SizeConfig.screenHeight -
-                    Scaffold.of(context).appBarMaxHeight,
+                height: SizeConfig.screenHeight! -
+                    Scaffold.of(context).appBarMaxHeight!,
                 child: Column(
                   children: [
                     Expanded(
                       flex: 2,
-                      child: StreamProvider<CIUser>.value(
+                      child: StreamProvider<CIUser?>.value(
                           initialData: null,
                           value: dbService.streamCIUser(user.uid),
                           child: ProfileBar()),
@@ -123,7 +123,7 @@ class _BodyState extends State<Body> {
                 ))));
   }
 
-  AnimatedContainer buildDot({int index}) => AnimatedContainer(
+  AnimatedContainer buildDot({int? index}) => AnimatedContainer(
         duration: Duration(milliseconds: 100),
         margin: EdgeInsets.symmetric(horizontal: 2, vertical: 4),
         width: index == currentView ? 20 : 6,

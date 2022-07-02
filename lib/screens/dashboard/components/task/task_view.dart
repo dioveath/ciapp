@@ -14,7 +14,7 @@ class TaskView extends StatefulWidget {
 }
 
 class _TaskViewState extends State<TaskView> {
-  BannerAd bannerAd;
+  BannerAd? bannerAd;
 
   initState() {
     super.initState();
@@ -87,9 +87,9 @@ class _TaskViewState extends State<TaskView> {
           if (bannerAd != null)
             Container(
                 alignment: Alignment.center,
-                width: bannerAd.size.width.toDouble(),
-                height: bannerAd.size.height.toDouble(),
-                child: AdWidget(ad: bannerAd)), 
+                width: bannerAd!.size.width.toDouble(),
+                height: bannerAd!.size.height.toDouble(),
+                child: AdWidget(ad: bannerAd!)), 
 
           Expanded(
             flex: 1,

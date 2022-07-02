@@ -16,14 +16,14 @@ import 'writerprofile_widget.dart';
 class NewsFeedBody extends StatefulWidget {
   FeedArticle feedArticle;
 
-  NewsFeedBody(this.feedArticle, {Key key}) : super(key: key);
+  NewsFeedBody(this.feedArticle, {Key? key}) : super(key: key);
 
   @override
   _NewsFeedBodyState createState() => _NewsFeedBodyState();
 }
 
 class _NewsFeedBodyState extends State<NewsFeedBody> {
-  List<BannerAd> bannerAds;
+  late List<BannerAd> bannerAds;
 
   @override
   void didChangeDependencies() {

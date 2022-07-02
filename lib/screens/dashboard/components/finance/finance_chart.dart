@@ -24,14 +24,14 @@ class FinanceChart extends StatelessWidget {
   }
 
   LineChartData buildLineChartData(MonthlySummary monSum, today) {
-    Map<int, int> incomeMap = monSum.dayIncomeMap;
-    var hAmount = 0;
+    Map<int, int?> incomeMap = monSum.dayIncomeMap!;
+    int? hAmount = 0;
 
     for (int i = 0; i < incomeMap.length; i++) {
-      if (incomeMap[i] > hAmount) hAmount = incomeMap[i];
+      if (incomeMap[i]! > hAmount!) hAmount = incomeMap[i];
     }
 
-    var interval = hAmount / 8;
+    var interval = hAmount! / 8;
     if (interval == 0) interval = 100;
     var c = '';
     List<String> ltList = [];
@@ -127,12 +127,12 @@ class FinanceChart extends StatelessWidget {
   }
 
   List<LineChartBarData> getLineChartBarDataUpToDay(
-      Map<int, int> incomeMap, int max, int day) {
+      Map<int, int?> incomeMap, int? max, int day) {
     List<FlSpot> spotList = [];
 
     incomeMap.forEach((key, val) {
       if (key > (day - 1)) return;
-      spotList.add(FlSpot(key.toDouble(), max != 0 ? val / max * 8 : 0));
+      spotList.add(FlSpot(key.toDouble(), max != 0 ? val! / max! * 8 : 0));
     });
 
     return [
