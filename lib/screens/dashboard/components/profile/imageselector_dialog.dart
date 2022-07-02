@@ -32,7 +32,7 @@ class _ImageSelectorDialogState extends State<ImageSelectorDialog> {
 
   Future<void> _cropImage() async {
     File croppedFile =
-        await ImageCropper.cropImage(sourcePath: _imageFile.path);
+        await new ImageCropper().cropImage(sourcePath: _imageFile.path);
 
     setState(() {
       _imageFile = croppedFile ?? _imageFile;

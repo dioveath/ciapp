@@ -61,7 +61,7 @@ class FinanceChart extends StatelessWidget {
         leftTitles: SideTitles(
           showTitles: true,
           reservedSize: 32,
-          getTextStyles: (value) => const TextStyle(
+          getTextStyles: (context, value) => const TextStyle(
             color: kBackgroundColor,
             fontSize: 8.0,
             fontFamily: "GlacialIndifference",
@@ -77,7 +77,7 @@ class FinanceChart extends StatelessWidget {
         bottomTitles: SideTitles(
           showTitles: true,
           reservedSize: 32,
-          getTextStyles: (value) => const TextStyle(
+          getTextStyles: (context, value) => const TextStyle(
             color: kBackgroundColor,
             fontSize: 6.0,
             fontFamily: "GlacialIndifference",
