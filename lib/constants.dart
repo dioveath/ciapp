@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 const kTitleColor = Color(0xFF130433);
 // const kTitleColor = Colors.black;
-const kPrimaryColor = Color(0xFF39C4DA);
+const kPrimaryColor = Color(0xFF0EE8E1);
 const kPrimaryAccentColor = Color(0xFF00DCFF);
 const kPrimaryDarkAccentColor = Color(0xFF088f9c);
 const kPrimaryAltAccentColor = Color(0xFF30a5b8);
@@ -11,6 +11,8 @@ const kSecondaryCompColor = Color(0xFF30808c);
 const kTertiaryColor = Colors.amberAccent;
 const kBackgroundColor = Color(0xFFECECEC);
 const kDullColor = Color(0xFF4C5B63);
+
+const kDisabledColor = Color(0xDD959595);
 
 const kDarkGradient = LinearGradient(
   begin: Alignment.topRight,
@@ -44,7 +46,6 @@ const kConfrmPasswordIncorrectError = "Confirmation password didn't match";
 const kConfirmPasswordEmpty = "Confirm Password is empty!";
 const kAddressEmptyError = "Write your address!";
 const kDatabaseError = "There is some kind of error in the database!";
-
 
 const List<String> kMonthNames = [
   'January',

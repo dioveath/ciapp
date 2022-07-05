@@ -4,6 +4,7 @@ import 'package:ciapp/constants.dart';
 import 'package:ciapp/shared/custom_text.dart';
 import 'package:ciapp/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'login_form.dart';
@@ -25,53 +26,32 @@ class _BodyState extends State<Body> {
         child: SingleChildScrollView(
           child: SizedBox(
             width: double.infinity,
-            height:
-                SizeConfig.screenHeight! - MediaQuery.of(context).padding.top,
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white10,
-                // gradient: LinearGradient(
-                //   begin: Alignment.topRight,
-                //   end: Alignment.bottomLeft,
-                //   colors: [
-                //     kSecondaryColor,
-                //     kTitleColor,
-                //   ],
-                
               ),
               child: Padding(
                 padding: const EdgeInsets.all(18),
                 child: Column(
                   children: [
-                    Spacer(),
                     Image.asset("assets/images/ci_pc.png",
-                        height: getPHeight(400)),
+                        height: 278.h),
                     Container(
                         alignment: Alignment.centerLeft,
                         child: CustomText(
-                          data: "Let's us make learning more possible, \nmore digital, more engaging.",
-                        ),
-                      ),
-                    Spacer(),
-                    Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text("Login with your credentials!",
-                            style:
-                                captionStyle.copyWith(color: kcPrimaryColor))),
-                    SizedBox(height: 5),
-
+                          data: "Login with your credentials!",
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                          color: kDisabledColor)),
                     LoginForm(),
 
-
-                    SizedBox(height: 5),
                     TextLink(
                         text: "Forget your credentials?",
                         onTapFunction: () {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text("Not available right now!")));
                         }),
-                    SizedBox(height: 10),
-                    Spacer(),
+                    SizedBox(height: 50.h),
                     TextLink(
                       text: "www.charichainstitute.com.np",
                       onTapFunction: () async {
@@ -82,7 +62,7 @@ class _BodyState extends State<Body> {
                       },
                       alignment: Alignment.center,
                     ),
-                    Spacer(),
+                    SizedBox(height: 50.h),
                   ],
                 ),
               ),
@@ -112,12 +92,13 @@ class TextLink extends StatelessWidget {
       alignment: alignment,
       child: GestureDetector(
           onTap: onTapFunction as void Function()?,
-          child: Text(text,
-              style: TextStyle(
-                fontSize: 18,
-                color: kPrimaryColor,
-                fontWeight: FontWeight.normal,
-              ))),
+          child: CustomText(
+            data: text,
+            color: Colors.black,
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w100,
+          ),
+        ),
     );
   }
 }

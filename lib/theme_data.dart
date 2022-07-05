@@ -8,7 +8,7 @@ ThemeData theme() {
   return ThemeData(
     primarySwatch: Colors.blue,
     brightness: Brightness.light,
-    fontFamily: 'GlacialIndifference',
+    fontFamily: 'Gotham',
     textTheme: TextTheme(
       headline5: TextStyle(fontSize: 15.0, color: Colors.white, fontWeight: FontWeight.normal),
       headline6: TextStyle(color: kPrimaryColor),

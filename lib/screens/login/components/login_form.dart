@@ -3,7 +3,9 @@ import 'package:ciapp/screens/register/register_screen.dart';
 import 'package:ciapp/service/authentication_service.dart';
 import 'package:ciapp/constants.dart';
 import 'package:ciapp/shared/input_decoration.dart';
+import 'package:ciapp/shared/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
@@ -32,13 +34,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        border: BorderDirectional(
-          top: BorderSide(color: kPrimaryColor, width: 1),
-          bottom: BorderSide(color: kPrimaryColor, width: 1), 
-        ),
-      ),
-      padding: EdgeInsets.only(top: 14, bottom: 12),
+      padding: EdgeInsets.only(top: 10.h, bottom: 20.h),
       child: Form(
         key: _formKey,
         child: Column(children: [
@@ -58,14 +54,15 @@ class _LoginFormState extends State<LoginForm> {
                   alignment: Alignment.bottomCenter,
                   child:
                       CircularProgressIndicator(backgroundColor: kPrimaryColor))
-              : CIButton(title: "LOGIN", onTap: onPressed),
+              : PrimaryButton(text: "LOGIN", onTap: onPressed),
           verticalSpacerMedium,
-          CIButton(
-              title: "REGISTER",
+          PrimaryButton(
               onTap: () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => RegisterScreen()));
-              }),
+                },
+                text: "LOGIN WITH GOOGLE"
+              ),
         ]),
       ),
     );
@@ -103,14 +100,12 @@ class _LoginFormState extends State<LoginForm> {
         }
       },
       keyboardType: TextInputType.text,
-      style: TextStyle(color: Colors.white),
       decoration: getInputDecoration("Password", Icons.lock),
     );
   }
 
   TextFormField buildPhoneNumberField() {
     return TextFormField(
-      style: TextStyle(color: Colors.white),
       onChanged: (value) {
         if (value.isNotEmpty && errors.contains(kPhoneEmptyError)) {
           setState(() {
@@ -146,7 +141,7 @@ class _LoginFormState extends State<LoginForm> {
 
   TextFormField buildEmailField() {
     return TextFormField(
-      style: TextStyle(color: Colors.white),
+      // style: TextStyle(color: Colors.black),
       controller: emailController,
       onChanged: (value) {
         if (value.isNotEmpty && errors.contains(kEmailEmptyError)) {
@@ -176,7 +171,7 @@ class _LoginFormState extends State<LoginForm> {
         }
       },
       keyboardType: TextInputType.emailAddress,
-      decoration: getInputDecoration("Email Address", Icons.email),
+      decoration: getInputDecoration("Email", Icons.email),
     );
   }
 
